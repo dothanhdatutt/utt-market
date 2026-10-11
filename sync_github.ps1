@@ -41,19 +41,16 @@ $headers = @{
     "Accept"        = "application/vnd.github.v3+json"
 }
 
-$files = @(
-    "README.md",
-    "index.html",
-    "server.ps1",
-    ".gitignore",
-    "css/tokens.css",
-    "css/style.css",
-    "js/app.js",
-    "assets/images/hero-banner.jpg",
-    "assets/images/product-headphones.jpg",
-    "assets/images/product-smartwatch.jpg",
-    "assets/images/product-skincare.jpg"
-)
+# Lấy toàn bộ các file trong thư mục dự án (loại trừ .git, .env và file tạm)
+$files = Get-ChildItem -Path $PSScriptRoot -Recurse -File | 
+    Where-Object { 
+        $rel = $_.FullName.Substring($PSScriptRoot.Length).TrimStart('\', '/')
+        -not ($rel.StartsWith(".git") -or $rel -eq ".env" -or $rel.EndsWith(".env") -or $rel -eq "github.config.json")
+    } | 
+    ForEach-Object {
+        $_.FullName.Substring($PSScriptRoot.Length).TrimStart('\', '/').Replace('\', '/')
+    }
+
 
 function Get-GitBlobSha($bytes) {
     $header = [System.Text.Encoding]::ASCII.GetBytes("blob $($bytes.Length)`0")
