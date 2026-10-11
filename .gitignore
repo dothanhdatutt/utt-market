@@ -1,0 +1,8 @@
+# Secrets and environment variables
+.env
+*.env
+github.config.json
+
+# System files
+.DS_Store
+Thumbs.db

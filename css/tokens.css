@@ -1,0 +1,143 @@
+/**
+ * Nova Market - Design System Tokens
+ * Gentle Pastel Blue & Modern E-commerce Aesthetic (Shopee/Tiki Inspired)
+ * Conforming to WCAG 2.2 AA Standards
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ==========================================================================
+     1. TYPOGRAPHY TOKENS
+     ========================================================================== */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-stack: var(--font-family-primary);
+
+  /* Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Typographic Scale */
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+
+  /* Line Heights */
+  --font-line-height-xs: 1.4;
+  --font-line-height-sm: 1.45;
+  --font-line-height-md: 1.5;
+  --font-line-height-lg: 1.55;
+  --font-line-height-xl: 1.4;
+
+  /* Base Typography Settings */
+  --font-size-base: var(--font-size-sm);
+  --font-weight-base: var(--font-weight-regular);
+  --font-line-height-base: 1.5;
+
+  /* ==========================================================================
+     2. COLOR TOKENS (SOOTHING & GENTLE SKY/OCEAN BLUE PALETTE)
+     ========================================================================== */
+  /* Primitive Raw Tokens */
+  --color-primitive-black: #0f172a;
+  --color-primitive-gray-800: #334155;
+  --color-primitive-gray-600: #475569;
+  --color-primitive-gray-500: #64748b;
+  --color-primitive-gray-300: #cbd5e1;
+  --color-primitive-gray-200: #e2e8f0;
+  --color-primitive-gray-100: #f1f5f9;
+  --color-primitive-gray-50: #f8fafc;
+  --color-primitive-white: #ffffff;
+
+  /* Soft Blue Palette */
+  --color-primitive-navy-900: #0f2b5c;          /* Deep elegant navy */
+  --color-primitive-navy-800: #1a4480;          /* Rich royal navy */
+  --color-primitive-blue-primary: #1d72db;       /* Gentle, soft ocean blue */
+  --color-primitive-blue-hover: #155bb5;         /* Deepened soft blue on hover */
+  --color-primitive-blue-soft: #3b82f6;          /* Soothing sky blue */
+  --color-primitive-blue-light: #60a5fa;         /* Light pastel blue */
+  --color-primitive-blue-surface: #edf5ff;       /* Very gentle pastel blue tint */
+  --color-primitive-blue-surface-hover: #e0eeff; /* Subtle blue hover tint */
+  --color-primitive-cyan-soft: #0284c7;          /* Soft sapphire/cyan */
+  --color-primitive-cyan-light: #e0f2fe;
+
+  /* Semantic Accents */
+  --color-primitive-red-danger: #ef4444;
+  --color-primitive-rose-soft: #f43f5e;
+  --color-primitive-green-success: #10b981;
+  --color-primitive-green-light: #ecfdf5;
+  --color-primitive-amber-warm: #f59e0b;
+
+  /* Semantic Surface Tokens */
+  --color-surface-base: var(--color-primitive-black);
+  --color-surface-canvas: #f4f7fb;               /* Airy, clean, gentle light blue-gray */
+  --color-surface-default: var(--color-primitive-white);
+  --color-surface-muted: var(--color-primitive-gray-50);
+  --color-surface-raised: var(--color-primitive-gray-100);
+  --color-surface-strong: var(--color-primitive-gray-200);
+  --color-surface-interactive: var(--color-primitive-blue-primary);
+  --color-surface-interactive-hover: var(--color-primitive-blue-hover);
+  --color-surface-interactive-light: var(--color-primitive-blue-surface);
+  --color-surface-danger: var(--color-primitive-red-danger);
+
+  /* Semantic Text Tokens */
+  --color-text-primary: #1e293b;                 /* Modern deep slate */
+  --color-text-secondary: #475569;               /* Refined reading text */
+  --color-text-tertiary: #64748b;                /* Subtle tertiary info */
+  --color-text-muted: #94a3b8;                   /* Placeholder & muted elements */
+  --color-text-inverse: var(--color-primitive-white);
+  --color-text-brand: var(--color-primitive-blue-primary);
+  --color-text-brand-navy: var(--color-primitive-navy-900);
+  --color-text-danger: var(--color-primitive-red-danger);
+  --color-text-price: #1d72db;                   /* Gentle sapphire blue price tag */
+
+  /* Semantic Border Tokens */
+  --color-border-subtle: #e2e8f0;
+  --color-border-default: #cbd5e1;
+  --color-border-hover: #93c5fd;
+  --color-border-focus: var(--color-primitive-blue-primary);
+  --color-border-interactive: var(--color-primitive-blue-primary);
+  --color-border-danger: var(--color-primitive-red-danger);
+
+  /* ==========================================================================
+     3. SPACING TOKENS
+     ========================================================================== */
+  --space-1: 1px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+  --space-12: 16px;
+  --space-16: 20px;
+  --space-20: 24px;
+  --space-24: 28px;
+  --space-32: 36px;
+
+  /* ==========================================================================
+     4. RADIUS, SHADOW, AND MOTION TOKENS
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 3px rgba(15, 43, 92, 0.04);
+  --shadow-card-resting: 0 2px 8px rgba(15, 43, 92, 0.05);
+  --shadow-card-hover: 0 12px 28px rgba(29, 114, 219, 0.14);
+  --shadow-dropdown: 0 10px 25px rgba(15, 43, 92, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(29, 114, 219, 0.25);
+
+  --motion-duration-instant: 180ms;
+  --motion-duration-fast: 220ms;
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
