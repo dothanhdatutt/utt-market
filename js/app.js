@@ -8,6 +8,88 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 212,
+    title: 'Tâm lý học tội phạm 1+2',
+    price: 80000,
+    oldPrice: 170000,
+    discount: '-53%',
+    rating: 5.0,
+    sold: '58',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-tam-ly-hoc-toi-pham-1-2.jpg',
+    category: 'books',
+    description: 'Combo trọn bộ 2 tập sách Tâm lý học tội phạm (Tập 1 & Tập 2) - Tác giả Stanton E. Samenow, Huy Nguyễn dịch, NXB Đại Học Kinh Tế Quốc Dân / 1988 Books. Bộ sách kinh điển bóc tách tâm can, thói quen tư duy và thế giới nội tâm phức tạp của các đối tượng phạm tội.',
+    specs: [
+      { label: 'Tên sách', value: 'Tâm lý học tội phạm 1+2' },
+      { label: 'Tác giả', value: 'Stanton E. Samenow' },
+      { label: 'Trọn bộ', value: '2 Tập (Tập 1 bìa đỏ + Tập 2 bìa đen)' },
+      { label: 'Nhà xuất bản', value: 'Đại Học Kinh Tế Quốc Dân / 1988 Books' },
+      { label: 'Tình trạng', value: 'Mới 98%, giấy đẹp phẳng phiu, không viết vẽ' }
+    ]
+  },
+  {
+    id: 213,
+    title: 'Chân dung phác hoạ',
+    price: 70000,
+    oldPrice: 135000,
+    discount: '-48%',
+    rating: 4.9,
+    sold: '41',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-chan-dung-phac-hoa.jpg',
+    category: 'books',
+    description: 'Sách Tâm lý học tội phạm: Phác họa chân dung kẻ phạm tội (Diêu Hồng Vũ - Đỗ Ái Nhi dịch). Cuốn sách điều tra phá án hình sự hấp dẫn đưa người đọc tiếp cận phương pháp lập hồ sơ tâm lý tội phạm (criminal profiling) hiện đại.',
+    specs: [
+      { label: 'Tên sách', value: 'Chân dung phác hoạ (Phác họa chân dung kẻ phạm tội)' },
+      { label: 'Tác giả & Dịch giả', value: 'Diêu Hồng Vũ - Đỗ Ái Nhi dịch' },
+      { label: 'Nhà phát hành', value: 'B-Books / Hồng Hà' },
+      { label: 'Tình trạng', value: 'Mới 100% nguyên màng co (Seal), chưa từng mở đọc' }
+    ]
+  },
+  {
+    id: 214,
+    title: 'Sự im lặng của bầy cừu',
+    price: 100000,
+    oldPrice: 190000,
+    discount: '-47%',
+    rating: 5.0,
+    sold: '72',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-su-im-lang-cua-bay-cuu.jpg',
+    category: 'books',
+    description: 'Kiệt tác trinh thám kinh điển "Sự im lặng của bầy cừu" (The Silence of the Lambs) của đại văn hào Thomas Harris, Nhã Nam phát hành. Hành trình đấu trí nghẹt thở giữa nữ thực tập sinh FBI Clarice Starling và kẻ sát nhân tâm thần bác sĩ Hannibal Lecter.',
+    specs: [
+      { label: 'Tên sách', value: 'Sự im lặng của bầy cừu' },
+      { label: 'Tác giả', value: 'Thomas Harris' },
+      { label: 'Đơn vị xuất bản', value: 'Nhã Nam x NXB Hội Nhà Văn' },
+      { label: 'Tình trạng', value: 'Mới 99%, có bọc nilon bảo quản sạch sẽ, gáy phẳng đẹp' }
+    ]
+  },
+  {
+    id: 215,
+    title: 'Tai nghe chụp tai Hoco',
+    price: 80000,
+    oldPrice: 160000,
+    discount: '-50%',
+    rating: 4.9,
+    sold: '64',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-tai-nghe-hoco.jpg',
+    category: 'electronics',
+    description: 'Tai nghe chụp tai Headphone Hoco chính hãng màu đen có dây kèm jack 3.5mm tiện dụng. Thiết kế đệm tai bọc da êm ái chống đau tai khi nghe nhạc hay học online lâu, quai đeo êm ái tăng chỉnh kích cỡ linh hoạt, âm thanh trong trẻo bass rõ ràng.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Tai nghe chụp tai Hoco' },
+      { label: 'Thương hiệu', value: 'Hoco' },
+      { label: 'Cổng kết nối', value: 'Jack cắm 3.5mm tiêu chuẩn (Laptop, PC, Điện thoại)' },
+      { label: 'Màu sắc', value: 'Đen sang trọng' },
+      { label: 'Tình trạng', value: 'Mới 98%, hoạt động hoàn hảo 2 bên tai, đệm da nguyên vẹn' }
+    ]
+  },
+  {
     id: 208,
     title: 'Bộ vợt pickleball',
     price: 100000,
@@ -1682,6 +1764,10 @@ function setupSearch() {
   if (!input) return;
 
   const sampleKeywords = [
+    'Tâm lý học tội phạm 1+2',
+    'Chân dung phác hoạ',
+    'Sự im lặng của bầy cừu',
+    'Tai nghe chụp tai Hoco',
     'Bộ vợt pickleball',
     'Ô tự động',
     'Bình nước giữ nhiệt',
