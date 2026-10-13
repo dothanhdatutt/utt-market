@@ -841,7 +841,44 @@
     </div>
   </div>
 
+  <!-- CANCEL ORDER CONFIRMATION MODAL -->
+  <div class="cancel-modal-overlay" id="cancel-modal-overlay" aria-hidden="true" onclick="if(event.target===this)closeCancelModal()">
+    <div class="cancel-modal" id="cancel-modal" role="dialog" aria-modal="true" aria-labelledby="cancel-modal-title" aria-hidden="true">
+      <div class="cancel-modal__header">
+        <h3 class="cancel-modal__title" id="cancel-modal-title">
+          <span>⚠️</span> Hủy Đơn Hàng #<span id="cancel-order-id-label"></span>
+        </h3>
+        <button type="button" class="cancel-modal__close" onclick="closeCancelModal()" aria-label="Đóng">✕</button>
+      </div>
+      <div class="cancel-modal__body">
+        <p style="font-size: 13px; color: #475569; margin-bottom: 12px; line-height: 1.5;">
+          Bạn có chắc chắn muốn hủy đơn hàng này không? Sau khi xác nhận, đơn hàng sẽ được chuyển sang trạng thái <strong>Đã hủy</strong>.
+        </p>
+        <div style="margin-bottom: 14px;">
+          <label for="cancel-reason-select" style="font-size: 12px; font-weight: 600; color: #1e293b; display: block; margin-bottom: 6px;">
+            Vui lòng chọn lý do hủy:
+          </label>
+          <select id="cancel-reason-select" class="cancel-reason-select" onchange="handleCancelReasonChange(this.value)" style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; outline: none; background: #fff;">
+            <option value="Đổi ý, không muốn mua nữa">Đổi ý, không muốn mua nữa</option>
+            <option value="Muốn thay đổi sản phẩm / số lượng">Muốn thay đổi sản phẩm / số lượng</option>
+            <option value="Muốn thay đổi thông tin nhận hàng">Muốn thay đổi thông tin nhận hàng</option>
+            <option value="Tìm thấy nơi khác bán giá tốt hơn">Tìm thấy nơi khác bán giá tốt hơn</option>
+            <option value="Đặt nhầm / Trùng đơn hàng">Đặt nhầm / Trùng đơn hàng</option>
+            <option value="Khác">Lý do khác...</option>
+          </select>
+        </div>
+        <div id="cancel-custom-reason-wrap" style="display: none; margin-bottom: 14px;">
+          <input type="text" id="cancel-custom-reason-input" placeholder="Nhập lý do chi tiết của bạn..." style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; outline: none;">
+        </div>
+      </div>
+      <div class="cancel-modal__footer">
+        <button type="button" class="btn btn--outline" onclick="closeCancelModal()" style="font-size: 13px; padding: 7px 14px;">Giữ Lại Đơn</button>
+        <button type="button" class="btn btn-confirm-cancel" id="btn-confirm-cancel" onclick="confirmCancelOrder()">Xác Nhận Hủy</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Application Script -->
-  <script src="./js/app.js?v=12"></script>
+  <script src="./js/app.js?v=13"></script>
 </body>
 </html>
