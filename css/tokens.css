@@ -42,30 +42,50 @@
   --font-line-height-base: 1.5;
 
   /* ==========================================================================
-     2. COLOR TOKENS (SOOTHING & GENTLE SKY/OCEAN BLUE PALETTE)
+     2. COLOR TOKENS (NOVA MARKET CELESTIAL MIDNIGHT & RADIANT AMBER ORANGE)
      ========================================================================== */
   /* Primitive Raw Tokens */
-  --color-primitive-black: #0f172a;
-  --color-primitive-gray-800: #334155;
+  --color-primitive-black: #050e1d;
+  --color-primitive-gray-800: #1e293b;
   --color-primitive-gray-600: #475569;
   --color-primitive-gray-500: #64748b;
   --color-primitive-gray-300: #cbd5e1;
   --color-primitive-gray-200: #e2e8f0;
   --color-primitive-gray-100: #f1f5f9;
-  --color-primitive-gray-50: #f8fafc;
+  --color-primitive-gray-50: #fafaf9;
   --color-primitive-white: #ffffff;
 
-  /* Soft Blue Palette */
-  --color-primitive-navy-900: #0f2b5c;          /* Deep elegant navy */
-  --color-primitive-navy-800: #1a4480;          /* Rich royal navy */
-  --color-primitive-blue-primary: #1d72db;       /* Gentle, soft ocean blue */
-  --color-primitive-blue-hover: #155bb5;         /* Deepened soft blue on hover */
-  --color-primitive-blue-soft: #3b82f6;          /* Soothing sky blue */
-  --color-primitive-blue-light: #60a5fa;         /* Light pastel blue */
-  --color-primitive-blue-surface: #edf5ff;       /* Very gentle pastel blue tint */
-  --color-primitive-blue-surface-hover: #e0eeff; /* Subtle blue hover tint */
-  --color-primitive-cyan-soft: #0284c7;          /* Soft sapphire/cyan */
-  --color-primitive-cyan-light: #e0f2fe;
+  /* Celestial Midnight Navy Palette (Deep Night Sky) */
+  --color-primitive-navy-950: #050e1d;          /* Deepest cosmic midnight */
+  --color-primitive-navy-900: #081730;          /* Brand header & backdrop midnight navy */
+  --color-primitive-navy-850: #0c1e3d;          /* Rich navy surface */
+  --color-primitive-navy-800: #10264e;          /* Navy container & cards */
+  --color-primitive-navy-700: #19386d;          /* Elevated navy accents */
+
+  /* Radiant Amber Orange & Gold Palette (Matching Nova Market Logo) */
+  --color-primitive-orange-primary: #ea580c;    /* Rich radiant amber-orange */
+  --color-primitive-orange-hover: #c2410c;      /* Deepened burnt orange */
+  --color-primitive-orange-soft: #f97316;       /* Bright vivid orange */
+  --color-primitive-orange-light: #fdba74;      /* Soft warm apricot */
+  --color-primitive-orange-surface: #fff7ed;    /* Warm gentle peach/cream tint */
+  --color-primitive-orange-surface-hover: #ffedd5; /* Warm peach hover tint */
+
+  /* Celestial Gold & Champagne Accents */
+  --color-primitive-gold: #f59e0b;              /* Sparkling star gold */
+  --color-primitive-gold-hover: #d97706;
+  --color-primitive-gold-light: #fef3c7;        /* Soft star shimmer */
+  --color-primitive-champagne: #faebd7;         /* Elegant champagne gold */
+  --color-primitive-champagne-light: #fffbeb;
+
+  /* Legacy aliases for backward compatibility */
+  --color-primitive-blue-primary: var(--color-primitive-orange-primary);
+  --color-primitive-blue-hover: var(--color-primitive-orange-hover);
+  --color-primitive-blue-soft: var(--color-primitive-orange-soft);
+  --color-primitive-blue-light: var(--color-primitive-orange-light);
+  --color-primitive-blue-surface: var(--color-primitive-orange-surface);
+  --color-primitive-blue-surface-hover: var(--color-primitive-orange-surface-hover);
+  --color-primitive-cyan-soft: var(--color-primitive-gold);
+  --color-primitive-cyan-light: var(--color-primitive-gold-light);
 
   /* Semantic Accents */
   --color-primitive-red-danger: #ef4444;
@@ -75,34 +95,34 @@
   --color-primitive-amber-warm: #f59e0b;
 
   /* Semantic Surface Tokens */
-  --color-surface-base: var(--color-primitive-black);
-  --color-surface-canvas: #f4f7fb;               /* Airy, clean, gentle light blue-gray */
+  --color-surface-base: var(--color-primitive-navy-950);
+  --color-surface-canvas: #f6f8fb;               /* Elegant light canvas */
   --color-surface-default: var(--color-primitive-white);
   --color-surface-muted: var(--color-primitive-gray-50);
   --color-surface-raised: var(--color-primitive-gray-100);
   --color-surface-strong: var(--color-primitive-gray-200);
-  --color-surface-interactive: var(--color-primitive-blue-primary);
-  --color-surface-interactive-hover: var(--color-primitive-blue-hover);
-  --color-surface-interactive-light: var(--color-primitive-blue-surface);
+  --color-surface-interactive: var(--color-primitive-orange-primary);
+  --color-surface-interactive-hover: var(--color-primitive-orange-hover);
+  --color-surface-interactive-light: var(--color-primitive-orange-surface);
   --color-surface-danger: var(--color-primitive-red-danger);
 
   /* Semantic Text Tokens */
-  --color-text-primary: #1e293b;                 /* Modern deep slate */
-  --color-text-secondary: #475569;               /* Refined reading text */
-  --color-text-tertiary: #64748b;                /* Subtle tertiary info */
-  --color-text-muted: #94a3b8;                   /* Placeholder & muted elements */
+  --color-text-primary: #0f172a;                 /* Deep refined text */
+  --color-text-secondary: #334155;               /* Reading text */
+  --color-text-tertiary: #64748b;                /* Secondary text */
+  --color-text-muted: #94a3b8;                   /* Placeholder text */
   --color-text-inverse: var(--color-primitive-white);
-  --color-text-brand: var(--color-primitive-blue-primary);
+  --color-text-brand: var(--color-primitive-orange-primary);
   --color-text-brand-navy: var(--color-primitive-navy-900);
   --color-text-danger: var(--color-primitive-red-danger);
-  --color-text-price: #1d72db;                   /* Gentle sapphire blue price tag */
+  --color-text-price: var(--color-primitive-orange-primary); /* Radiant amber orange price tag */
 
   /* Semantic Border Tokens */
   --color-border-subtle: #e2e8f0;
   --color-border-default: #cbd5e1;
-  --color-border-hover: #93c5fd;
-  --color-border-focus: var(--color-primitive-blue-primary);
-  --color-border-interactive: var(--color-primitive-blue-primary);
+  --color-border-hover: var(--color-primitive-orange-light);
+  --color-border-focus: var(--color-primitive-orange-primary);
+  --color-border-interactive: var(--color-primitive-orange-primary);
   --color-border-danger: var(--color-primitive-red-danger);
 
   /* ==========================================================================
@@ -131,11 +151,11 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  --shadow-xs: 0 1px 3px rgba(15, 43, 92, 0.04);
-  --shadow-card-resting: 0 2px 8px rgba(15, 43, 92, 0.05);
-  --shadow-card-hover: 0 12px 28px rgba(29, 114, 219, 0.14);
-  --shadow-dropdown: 0 10px 25px rgba(15, 43, 92, 0.12);
-  --shadow-focus: 0 0 0 3px rgba(29, 114, 219, 0.25);
+  --shadow-xs: 0 1px 3px rgba(8, 23, 48, 0.05);
+  --shadow-card-resting: 0 2px 8px rgba(8, 23, 48, 0.06);
+  --shadow-card-hover: 0 12px 28px rgba(234, 88, 12, 0.16);
+  --shadow-dropdown: 0 12px 30px rgba(8, 23, 48, 0.2);
+  --shadow-focus: 0 0 0 3px rgba(234, 88, 12, 0.25);
 
   --motion-duration-instant: 180ms;
   --motion-duration-fast: 220ms;

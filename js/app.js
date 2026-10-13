@@ -15,7 +15,7 @@ const PRODUCTS_DATA = [
     discount: '-60%',
     rating: 5.0,
     sold: '128',
-    isMall: false,
+    isMall: true,
     freeship: true,
     image: './assets/images/book-toan-daicuong-bt.jpg',
     category: 'books',
@@ -55,7 +55,7 @@ const PRODUCTS_DATA = [
     discount: '-57%',
     rating: 5.0,
     sold: '115',
-    isMall: false,
+    isMall: true,
     freeship: true,
     image: './assets/images/book-nguyenly-ketoan-bt.jpg',
     category: 'books',
@@ -152,7 +152,7 @@ const PRODUCTS_DATA = [
     discount: '-62%',
     rating: 5.0,
     sold: '78',
-    isMall: false,
+    isMall: true,
     freeship: true,
     image: './assets/images/book-voices.jpg',
     category: 'books',
@@ -171,7 +171,7 @@ const PRODUCTS_DATA = [
     discount: '-57%',
     rating: 4.9,
     sold: '165',
-    isMall: false,
+    isMall: true,
     freeship: true,
     image: './assets/images/book-triet-hoc.jpg',
     category: 'books',
@@ -301,162 +301,6 @@ const PRODUCTS_DATA = [
       { label: 'Chất liệu', value: 'Thun cá sấu Poly-Spandex kháng khuẩn, co giãn 4 chiều' },
       { label: 'Địa chỉ nhận hàng', value: 'Campus UTT 54 Triều Khúc hoặc Ký túc xá UTT (Hỗ trợ ship COD toàn quốc)' }
     ]
-  },
-  {
-    id: 1,
-    title: 'Tai nghe Bluetooth không dây Chống ồn chủ động Hybrid ANC Sonic Pro Max',
-    price: 349000,
-    oldPrice: 699000,
-    discount: '-50%',
-    rating: 4.9,
-    sold: '1.2k',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-headphones.jpg',
-    category: 'electronics'
-  },
-  {
-    id: 2,
-    title: 'Đồng hồ thông minh Smartwatch AMOLED Vỏ Nhôm Đo Nhịp Tim Kháng Nước IP68',
-    price: 689000,
-    oldPrice: 1290000,
-    discount: '-47%',
-    rating: 4.8,
-    sold: '850',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-smartwatch.jpg',
-    category: 'electronics'
-  },
-  {
-    id: 3,
-    title: 'Tinh chất dưỡng sáng da Aurélia Radiance Drops Amber Serum 30ml Pháp',
-    price: 249000,
-    oldPrice: 450000,
-    discount: '-45%',
-    rating: 5.0,
-    sold: '2.4k',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-skincare.jpg',
-    category: 'beauty'
-  },
-  {
-    id: 4,
-    title: 'Bàn phím cơ Gaming không dây RGB 3 Mode Hotswap Switch Red êm ái',
-    price: 499000,
-    oldPrice: 890000,
-    discount: '-44%',
-    rating: 4.9,
-    sold: '640',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-headphones.jpg',
-    category: 'electronics'
-  },
-  {
-    id: 5,
-    title: 'Giày Sneaker Thể Thao Nam Nữ Đế Cao Su Đàn Hồi Thoáng Khí Phong Cách Ulzzang',
-    price: 189000,
-    oldPrice: 350000,
-    discount: '-46%',
-    rating: 4.7,
-    sold: '3.1k',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-smartwatch.jpg',
-    category: 'fashion'
-  },
-  {
-    id: 6,
-    title: 'Nồi chiên không dầu điện tử Dung tích lớn 6.5L Kính quan sát Công suất 1800W',
-    price: 899000,
-    oldPrice: 1590000,
-    discount: '-43%',
-    rating: 4.9,
-    sold: '1.9k',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-skincare.jpg',
-    category: 'home'
-  },
-  {
-    id: 7,
-    title: 'Chuột không dây Silent Silent-Click Ergonomic 2.4GHz & Bluetooth 5.2',
-    price: 129000,
-    oldPrice: 240000,
-    discount: '-46%',
-    rating: 4.8,
-    sold: '4.5k',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-headphones.jpg',
-    category: 'electronics'
-  },
-  {
-    id: 8,
-    title: 'Serum phục hồi da đa tầng Hyaluronic B5 Cấp ẩm chống lão hóa chuyên sâu',
-    price: 320000,
-    oldPrice: 550000,
-    discount: '-42%',
-    rating: 4.9,
-    sold: '980',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-skincare.jpg',
-    category: 'beauty'
-  },
-  {
-    id: 9,
-    title: 'Áo Khoác Gió Unisex 2 Lớp Chống Nước Cản Gió Chuẩn Form Thể Thao Mùa Thu Đông',
-    price: 159000,
-    oldPrice: 299000,
-    discount: '-47%',
-    rating: 4.7,
-    sold: '1.5k',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-smartwatch.jpg',
-    category: 'fashion'
-  },
-  {
-    id: 10,
-    title: 'Máy cạo râu điện 3 đầu lưỡi kép kháng nước IPX7 sạc nhanh Type-C',
-    price: 219000,
-    oldPrice: 390000,
-    discount: '-44%',
-    rating: 4.8,
-    sold: '720',
-    isMall: true,
-    freeship: true,
-    image: './assets/images/product-headphones.jpg',
-    category: 'beauty'
-  },
-  {
-    id: 11,
-    title: 'Loa Bluetooth Mini Bass Cực Mạnh LED RGB Đổi Màu Hỗ Trợ Thẻ Nhớ TF',
-    price: 139000,
-    oldPrice: 280000,
-    discount: '-50%',
-    rating: 4.6,
-    sold: '3.8k',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-headphones.jpg',
-    category: 'electronics'
-  },
-  {
-    id: 12,
-    title: 'Đèn Bàn Học LED Chống Cận Thị 3 Chế Độ Sáng Cảm Ứng Tích Hợp Pin Sạc',
-    price: 99000,
-    oldPrice: 190000,
-    discount: '-48%',
-    rating: 4.8,
-    sold: '5.2k',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-skincare.jpg',
-    category: 'home'
   }
 ];
 
@@ -730,6 +574,7 @@ function setComponentState(stateName) {
 function updateCartUI() {
   const countEl = document.getElementById('cart-count');
   const countHeaderEl = document.getElementById('cart-drawer-count');
+  const mobCountEl = document.getElementById('mob-cart-count');
   const itemsContainer = document.getElementById('cart-items-container');
   const subtotalEl = document.getElementById('cart-subtotal');
   const totalEl = document.getElementById('cart-total');
@@ -741,6 +586,7 @@ function updateCartUI() {
   const finalTotal = Math.max(0, subtotal - appliedVoucherDiscount);
 
   if (countEl) countEl.textContent = totalItems;
+  if (mobCountEl) mobCountEl.textContent = totalItems;
   if (countHeaderEl) countHeaderEl.textContent = `(${totalItems})`;
   if (subtotalEl) subtotalEl.textContent = formatVND(subtotal);
   if (totalEl) totalEl.textContent = formatVND(finalTotal);
@@ -1110,13 +956,34 @@ function updateUserUI() {
   const userLinks = document.getElementById('auth-user-links');
   const displayNameEl = document.getElementById('user-display-name');
 
+  // Header auth elements (mobile + desktop)
+  const headerAuthGuest = document.getElementById('header-auth-guest');
+  const headerAuthUser = document.getElementById('header-auth-user');
+  const headerUserName = document.getElementById('header-user-name');
+  const headerDropdownName = document.getElementById('header-dropdown-name');
+  const mobAuthLabel = document.getElementById('mob-auth-label');
+
   if (currentUser) {
     if (guestLinks) guestLinks.style.display = 'none';
     if (userLinks) userLinks.style.display = 'inline-flex';
     if (displayNameEl) displayNameEl.textContent = `Chào, ${currentUser.name || 'Thành viên'}`;
+
+    if (headerAuthGuest) headerAuthGuest.style.display = 'none';
+    if (headerAuthUser) headerAuthUser.style.display = 'block';
+    if (headerUserName) headerUserName.textContent = currentUser.name || 'Tài khoản';
+    if (headerDropdownName) headerDropdownName.textContent = currentUser.name || 'Thành viên';
+    if (mobAuthLabel) mobAuthLabel.textContent = currentUser.name || 'Tài khoản';
   } else {
     if (guestLinks) guestLinks.style.display = 'inline-flex';
     if (userLinks) userLinks.style.display = 'none';
+
+    if (headerAuthGuest) headerAuthGuest.style.display = 'block';
+    if (headerAuthUser) {
+      headerAuthUser.style.display = 'none';
+      const dropdown = document.getElementById('header-user-dropdown');
+      if (dropdown) dropdown.classList.remove('active');
+    }
+    if (mobAuthLabel) mobAuthLabel.textContent = 'Đăng Nhập';
   }
 }
 
@@ -1172,7 +1039,7 @@ function switchAuthTab(tabName) {
 function setupAuth() {
   loadStoredUser();
 
-  // Open triggers
+  // Open triggers (Top Bar)
   document.getElementById('nav-login-btn')?.addEventListener('click', (e) => {
     e.preventDefault();
     openAuthModal('login');
@@ -1182,7 +1049,51 @@ function setupAuth() {
     openAuthModal('register');
   });
 
-  // Close triggers
+  // Open triggers (Main Header - always visible on mobile & desktop)
+  document.getElementById('header-login-btn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openAuthModal('login');
+  });
+
+  // Open triggers (Mobile Bottom Bar)
+  document.getElementById('mob-nav-auth')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentUser) {
+      const dropdown = document.getElementById('header-user-dropdown');
+      if (dropdown) {
+        dropdown.classList.toggle('active');
+        if (dropdown.classList.contains('active')) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        showToast(`Tài khoản hiện tại: ${currentUser.name}`);
+      }
+    } else {
+      openAuthModal('login');
+    }
+  });
+
+  document.getElementById('mob-nav-cart')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleCartDrawer(true);
+  });
+
+  // Header user button dropdown toggle
+  document.getElementById('header-user-btn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const dropdown = document.getElementById('header-user-dropdown');
+    dropdown?.classList.toggle('active');
+  });
+
+  // Close header user dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    const authUser = document.getElementById('header-auth-user');
+    if (authUser && !authUser.contains(e.target)) {
+      document.getElementById('header-user-dropdown')?.classList.remove('active');
+    }
+  });
+
+  // Close triggers (Modal)
   document.getElementById('auth-close-btn')?.addEventListener('click', closeAuthModal);
   document.getElementById('auth-overlay')?.addEventListener('click', closeAuthModal);
 
@@ -1312,26 +1223,153 @@ function setupAuth() {
     showToast(`Tạo tài khoản thành công! Chào mừng ${currentUser.name} gia nhập Nova Market.`);
   });
 
-  // Logout handler
-  document.getElementById('nav-logout-btn')?.addEventListener('click', (e) => {
+  // Logout handlers
+  const handleLogout = (e) => {
     e.preventDefault();
     currentUser = null;
     try {
       localStorage.removeItem('nova_market_user');
       localStorage.removeItem('utt_market_user');
     } catch (err) {}
+    document.getElementById('header-user-dropdown')?.classList.remove('active');
     updateUserUI();
     showToast('Bạn đã đăng xuất tài khoản thành công.');
-  });
+  };
+
+  document.getElementById('nav-logout-btn')?.addEventListener('click', handleLogout);
+  document.getElementById('header-logout-btn')?.addEventListener('click', handleLogout);
 }
 
-// 12. Initializer & Event Listeners
+// 12. Hero Banner Auto-sliding Carousel
+function initHeroSlider() {
+  const slider = document.getElementById('hero-slider');
+  const track = document.getElementById('hero-slider-track');
+  const prevBtn = document.getElementById('hero-slider-prev');
+  const nextBtn = document.getElementById('hero-slider-next');
+  const dots = document.querySelectorAll('.hero-slider__dot');
+  const slides = document.querySelectorAll('.hero-slide');
+
+  if (!slider || !track || slides.length === 0) return;
+
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+  let autoSlideTimer = null;
+  const slideInterval = 3500; // 3.5 seconds per slide
+
+  function goToSlide(index) {
+    if (index < 0) {
+      currentSlide = totalSlides - 1;
+    } else if (index >= totalSlides) {
+      currentSlide = 0;
+    } else {
+      currentSlide = index;
+    }
+
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    dots.forEach((dot, idx) => {
+      const isActive = idx === currentSlide;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1);
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideTimer = setInterval(nextSlide, slideInterval);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
+
+  // Next / Prev Button Clicks
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    nextSlide();
+    startAutoSlide();
+  });
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    prevSlide();
+    startAutoSlide();
+  });
+
+  // Dots click handler
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const slideIdx = parseInt(dot.dataset.slide, 10);
+      if (!isNaN(slideIdx)) {
+        goToSlide(slideIdx);
+        startAutoSlide();
+      }
+    });
+  });
+
+  // Pause on hover
+  slider.addEventListener('mouseenter', stopAutoSlide);
+  slider.addEventListener('mouseleave', startAutoSlide);
+
+  // Keyboard navigation when slider is focused
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevSlide();
+      startAutoSlide();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextSlide();
+      startAutoSlide();
+    }
+  });
+
+  // Touch Swipe Support for Mobile & Tablets
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoSlide();
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    startAutoSlide();
+  }, { passive: true });
+
+  // Initial auto-slide start
+  startAutoSlide();
+}
+
+// 13. Initializer & Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts(PRODUCTS_DATA);
   updateCartUI();
   setupSearch();
   startCountdown();
   setupAuth();
+  initHeroSlider();
 
   // Handle direct product link via hash (e.g. #product-13)
   function checkProductHash() {
