@@ -8,6 +8,27 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 218,
+    title: 'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
+    price: 55000,
+    oldPrice: 110000,
+    discount: '-50%',
+    rating: 5.0,
+    sold: '64',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-combo-ro-gio-nhua.jpg',
+    category: 'home',
+    description: 'Combo trọn bộ đồ gia dụng phòng trọ bằng nhựa dẻo cao cấp gồm: 1 giỏ đựng quần áo có quai xách cỡ lớn thoát khí chống ẩm mốc + Set 3 rổ nhựa lồng đa năng rửa rau củ quả, vo gạo, để đồ khô. Nhựa PP nguyên sinh bền bỉ, màu be tối giản phong cách Hàn Quốc.',
+    specs: [
+      { label: 'Bộ sản phẩm', value: '1 Giỏ đựng quần áo lớn + Set 3 rổ nhựa lồng đa năng' },
+      { label: 'Chất liệu', value: 'Nhựa dẻo PP cao cấp, dày dặn, không mùi' },
+      { label: 'Màu sắc', value: 'Be sữa nhạt trang nhã' },
+      { label: 'Công dụng', value: 'Đựng quần áo giặt, rửa rau quả, sắp xếp đồ dùng phòng trọ' },
+      { label: 'Tình trạng', value: 'Mới 99%, sạch đẹp không nứt vỡ' }
+    ]
+  },
+  {
     id: 216,
     title: 'Tai nghe',
     price: 120000,
@@ -47,27 +68,6 @@ const PRODUCTS_DATA = [
       { label: 'Màu sắc', value: 'Cam tươi trẻ trung' },
       { label: 'Chức năng', value: 'Nấu cơm (Cook) và Giữ ấm (Warm) tự động' },
       { label: 'Tình trạng', value: 'Mới 95%, nguyên vẹn, nấu cơm chín nhanh và ngon' }
-    ]
-  },
-  {
-    id: 218,
-    title: 'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
-    price: 55000,
-    oldPrice: 110000,
-    discount: '-50%',
-    rating: 5.0,
-    sold: '64',
-    isMall: false,
-    freeship: true,
-    image: './assets/images/product-combo-ro-gio-nhua.jpg',
-    category: 'home',
-    description: 'Combo trọn bộ đồ gia dụng phòng trọ bằng nhựa dẻo cao cấp gồm: 1 giỏ đựng quần áo có quai xách cỡ lớn thoát khí chống ẩm mốc + Set 3 rổ nhựa lồng đa năng rửa rau củ quả, vo gạo, để đồ khô. Nhựa PP nguyên sinh bền bỉ, màu be tối giản phong cách Hàn Quốc.',
-    specs: [
-      { label: 'Bộ sản phẩm', value: '1 Giỏ đựng quần áo lớn + Set 3 rổ nhựa lồng đa năng' },
-      { label: 'Chất liệu', value: 'Nhựa dẻo PP cao cấp, dày dặn, không mùi' },
-      { label: 'Màu sắc', value: 'Be sữa nhạt trang nhã' },
-      { label: 'Công dụng', value: 'Đựng quần áo giặt, rửa rau quả, sắp xếp đồ dùng phòng trọ' },
-      { label: 'Tình trạng', value: 'Mới 99%, sạch đẹp không nứt vỡ' }
     ]
   },
   {
