@@ -8,6 +8,69 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 216,
+    title: 'Tai nghe',
+    price: 120000,
+    oldPrice: 250000,
+    discount: '-52%',
+    rating: 5.0,
+    sold: '48',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-tai-nghe-bluetooth.jpg',
+    category: 'electronics',
+    description: 'Tai nghe Bluetooth không dây TWS màu trắng kèm dock sạc nhỏ gọn tiện lợi. Kiểu dáng công thái học ôm sát vành tai êm ái, kết nối Bluetooth ổn định, thời lượng pin sử dụng liên tục 4-5 tiếng, đàm thoại và nghe nhạc chất lượng âm thanh to rõ, bass ấm.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Tai nghe Bluetooth không dây TWS' },
+      { label: 'Kết nối', value: 'Bluetooth 5.3 tự động ghép nối nhanh' },
+      { label: 'Thời lượng pin', value: '4 - 5 giờ liên tục, dock sạc dự phòng 2 - 3 lần' },
+      { label: 'Màu sắc', value: 'Trắng' },
+      { label: 'Tình trạng', value: 'Mới 98%, tai nghe và dock sạc hoạt động hoàn hảo' }
+    ]
+  },
+  {
+    id: 217,
+    title: 'Nồi cơm điện Kangaroo',
+    price: 150000,
+    oldPrice: 320000,
+    discount: '-53%',
+    rating: 4.9,
+    sold: '36',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-noi-com-dien-kangaroo.jpg',
+    category: 'home',
+    description: 'Nồi cơm điện Kangaroo màu cam nổi bật, dung tích mini phù hợp cho sinh viên ở trọ hoặc gia đình nhỏ từ 1 - 2 người ăn. Công suất nấu nhanh, cơm chín đều dẻo hạt, lòng nồi chống dính dễ vệ sinh chùi rửa, có chế độ giữ ấm tự động sau khi cơm chín.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Nồi cơm điện Kangaroo' },
+      { label: 'Thương hiệu', value: 'Kangaroo' },
+      { label: 'Màu sắc', value: 'Cam tươi trẻ trung' },
+      { label: 'Chức năng', value: 'Nấu cơm (Cook) và Giữ ấm (Warm) tự động' },
+      { label: 'Tình trạng', value: 'Mới 95%, nguyên vẹn, nấu cơm chín nhanh và ngon' }
+    ]
+  },
+  {
+    id: 218,
+    title: 'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
+    price: 55000,
+    oldPrice: 110000,
+    discount: '-50%',
+    rating: 5.0,
+    sold: '64',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-combo-ro-gio-nhua.jpg',
+    category: 'home',
+    description: 'Combo trọn bộ đồ gia dụng phòng trọ bằng nhựa dẻo cao cấp gồm: 1 giỏ đựng quần áo có quai xách cỡ lớn thoát khí chống ẩm mốc + Set 3 rổ nhựa lồng đa năng rửa rau củ quả, vo gạo, để đồ khô. Nhựa PP nguyên sinh bền bỉ, màu be tối giản phong cách Hàn Quốc.',
+    specs: [
+      { label: 'Bộ sản phẩm', value: '1 Giỏ đựng quần áo lớn + Set 3 rổ nhựa lồng đa năng' },
+      { label: 'Chất liệu', value: 'Nhựa dẻo PP cao cấp, dày dặn, không mùi' },
+      { label: 'Màu sắc', value: 'Be sữa nhạt trang nhã' },
+      { label: 'Công dụng', value: 'Đựng quần áo giặt, rửa rau quả, sắp xếp đồ dùng phòng trọ' },
+      { label: 'Tình trạng', value: 'Mới 99%, sạch đẹp không nứt vỡ' }
+    ]
+  },
+  {
     id: 212,
     title: 'Tâm lý học tội phạm 1+2',
     price: 80000,
@@ -1764,6 +1827,9 @@ function setupSearch() {
   if (!input) return;
 
   const sampleKeywords = [
+    'Tai nghe',
+    'Nồi cơm điện Kangaroo',
+    'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
     'Tâm lý học tội phạm 1+2',
     'Chân dung phác hoạ',
     'Sự im lặng của bầy cừu',
