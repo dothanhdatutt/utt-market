@@ -8,6 +8,90 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 208,
+    title: 'Bộ vợt pickleball',
+    price: 100000,
+    oldPrice: 220000,
+    discount: '-55%',
+    rating: 5.0,
+    sold: '45',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-bo-vot-pickleball.jpg',
+    category: 'sports',
+    description: 'Bộ vợt pickleball LIANBO trọn gói gồm vợt pickleball chuyên dụng kèm 4 quả bóng (vàng, xanh dương, đỏ) và túi đựng khóa kéo trong suốt có quai xách tiện lợi. Vợt thiết kế hoa văn laser bắt mắt, lõi trợ lực êm tay, bóng tiêu chuẩn lỗ khí đều cho đường bóng ổn định. Thích hợp cho học phần thể chất UTT và thi đấu phong trào.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Bộ vợt pickleball LIANBO' },
+      { label: 'Trọn bộ gồm', value: '1 Vợt Pickleball + 4 Quả bóng màu + 1 Túi đựng chuyên dụng' },
+      { label: 'Thương hiệu', value: 'LIANBO' },
+      { label: 'Màu sắc bóng', value: 'Xanh dương, Vàng neon, Đỏ' },
+      { label: 'Tình trạng', value: 'Mới 100% nguyên túi bóng, tay cầm bọc màng bảo vệ' }
+    ]
+  },
+  {
+    id: 209,
+    title: 'Ô tự động',
+    price: 60000,
+    oldPrice: 120000,
+    discount: '-50%',
+    rating: 4.9,
+    sold: '82',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-o-tu-dong.jpg',
+    category: 'home',
+    description: 'Ô dù cầm tay gấp gọn cơ chế đóng mở tự động thông minh bằng 1 nút bấm tiện lợi. Tông màu xanh navy thanh lịch sang trọng, khung nan thép dẻo chịu gió giật tốt, bề mặt vải dù 2 lớp chống thấm nước tuyệt đối và phủ lớp cản tia UV bảo vệ da khi đi học dưới nắng mưa.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Ô tự động 1 chạm' },
+      { label: 'Cơ chế hoạt động', value: 'Bấm nút tự động bật mở & thu gọn 1 chạm' },
+      { label: 'Màu sắc', value: 'Xanh Navy (Xanh than)' },
+      { label: 'Tính năng', value: 'Chống thấm nước tán mưa, cản tia cực tím UV' },
+      { label: 'Tình trạng', value: 'Mới 99%, nút bấm nảy tanh tách, bung mở trơn tru' }
+    ]
+  },
+  {
+    id: 210,
+    title: 'Bình nước giữ nhiệt',
+    price: 150000,
+    oldPrice: 280000,
+    discount: '-46%',
+    rating: 5.0,
+    sold: '56',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-binh-nuoc-giu-nhiet.jpg',
+    category: 'home',
+    description: 'Bình nước giữ nhiệt inox 304 cao cấp họa tiết hoạt hình chú mèo tai xanh siêu đáng yêu. Nắp bình đính đầu mèo 3D dễ thương có quai xách silicon tiện mang theo đi học, đi làm, lên giảng đường. Ruột bình inox thực phẩm an toàn tuyệt đối, giữ nhiệt nóng và lạnh bền bỉ từ 8 đến 12 tiếng.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Bình nước giữ nhiệt nắp mèo hoạt hình' },
+      { label: 'Dung tích', value: '500ml' },
+      { label: 'Chất liệu ruột', value: 'Inox 304 tiêu chuẩn an toàn thực phẩm' },
+      { label: 'Khả năng giữ nhiệt', value: 'Giữ nóng 8h - Giữ lạnh 12h' },
+      { label: 'Tình trạng', value: 'Mới 99%, sạch bóng thơm tho, giữ nhiệt chuẩn' }
+    ]
+  },
+  {
+    id: 211,
+    title: 'Vợt cầu lông',
+    price: 200000,
+    oldPrice: 390000,
+    discount: '-49%',
+    rating: 5.0,
+    sold: '39',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-vot-cau-long-kumpoo.jpg',
+    category: 'sports',
+    description: 'Vợt cầu lông Kumpoo AX-10 PRO chính hãng màu trắng tinh tế, đan sẵn cước trắng lực căng cao cực nảy. Cán vợt quấn lót êm tay màu vàng nổi bật, khung vợt thanh thoát khí động học cho khả năng vung vợt nhanh, công thủ toàn diện. Cây vợt rất phù hợp cho sinh viên rèn luyện sức khỏe, học GDTC và giao lưu thi đấu.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Vợt cầu lông Kumpoo AX-10 PRO' },
+      { label: 'Màu sắc', value: 'Trắng phối xanh ngọc, cán quấn vàng' },
+      { label: 'Lưới cước', value: 'Đã đan cước trắng chuẩn căng, độ nảy và trợ lực tốt' },
+      { label: 'Lối chơi', value: 'Công thủ toàn diện, trợ lực tốt cho người chơi' },
+      { label: 'Tình trạng', value: 'Mới 98%, khung nguyên vẹn không vết nứt, cầm êm tay' }
+    ]
+  },
+  {
     id: 201,
     title: 'Túi đựng laptop 15,6 inch',
     price: 80000,
@@ -1598,12 +1682,15 @@ function setupSearch() {
   if (!input) return;
 
   const sampleKeywords = [
+    'Bộ vợt pickleball',
+    'Ô tự động',
+    'Bình nước giữ nhiệt',
+    'Vợt cầu lông',
     'Túi đựng laptop 15,6 inch',
     'Bộ đồng phục thể chất UTT size M',
     'Máy ảnh Booie Retro Korea',
     'Áo khoác UTT size M',
     'Áo đồng phục mùa hè UTT size 2XL',
-    'Vợt cầu lông',
     'Vợt Pickleball',
     'Pass áo cũ UTT đẹp mới mặc 1 lần',
     'Sách bài tập Toán đại cương',
