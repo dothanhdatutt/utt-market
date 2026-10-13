@@ -1727,43 +1727,61 @@ function openOrdersModal() {
       </div>
     `;
   } else {
-    body.innerHTML = orders.map(ord => `
-      <div class="order-history-card">
-        <div class="order-card-top">
-          <div>
-            <span class="order-id-badge">#${ord.id}</span>
-            <div class="order-date-text">Ngày đặt: ${ord.date}</div>
-          </div>
-          <span class="order-status-pill order-status--shipping">${ord.status}</span>
-        </div>
-
-        <div style="font-size: 12px; color: #475569; margin-bottom: 8px;">
-          <strong>Người nhận:</strong> ${ord.customer?.name} - ${ord.customer?.phone} | <strong>Địa chỉ:</strong> ${ord.customer?.fullAddress}
-        </div>
-        <div style="font-size: 11.5px; color: #64748b; margin-bottom: 10px;">
-          <strong>Thanh toán:</strong> ${ord.paymentMethod}
-        </div>
-
-        <div class="order-items-preview">
-          ${(ord.items || []).map(item => `
-            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
-              <span style="max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                • ${item.title} <strong style="color: #f57224;">x${item.qty}</strong>
-              </span>
-              <span style="font-weight: 600; color: #1e293b;">${formatVND(item.price * item.qty)}</span>
+    body.innerHTML = orders.map(ord => {
+      const isCancelled = ord.status === 'Đã hủy';
+      const statusClass = isCancelled ? 'order-status--cancelled' : 'order-status--shipping';
+      return `
+        <div class="order-history-card">
+          <div class="order-card-top">
+            <div>
+              <span class="order-id-badge">#${ord.id}</span>
+              <div class="order-date-text">Ngày đặt: ${ord.date}</div>
             </div>
-          `).join('')}
-        </div>
+            <span class="order-status-pill ${statusClass}">${ord.status}</span>
+          </div>
 
-        <div class="order-card-bottom">
-          <span style="font-size: 12px; color: #64748b;">Giao hàng tiêu chuẩn: <strong style="color: #16a34a;">MIỄN PHÍ</strong></span>
-          <div>
-            <span style="font-size: 12px; color: #64748b;">Tổng tiền: </span>
-            <span class="order-total-val">${formatVND(ord.total)}</span>
+          <div style="font-size: 12px; color: #475569; margin-bottom: 8px;">
+            <strong>Người nhận:</strong> ${ord.customer?.name} - ${ord.customer?.phone} | <strong>Địa chỉ:</strong> ${ord.customer?.fullAddress}
+          </div>
+          <div style="font-size: 11.5px; color: #64748b; margin-bottom: 10px;">
+            <strong>Thanh toán:</strong> ${ord.paymentMethod}
+          </div>
+
+          <div class="order-items-preview">
+            ${(ord.items || []).map(item => `
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
+                <span style="max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  • ${item.title} <strong style="color: #f57224;">x${item.qty}</strong>
+                </span>
+                <span style="font-weight: 600; color: #1e293b;">${formatVND(item.price * item.qty)}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="order-card-bottom">
+            <span style="font-size: 12px; color: #64748b;">Giao hàng tiêu chuẩn: <strong style="color: #16a34a;">MIỄN PHÍ</strong></span>
+            <div>
+              <span style="font-size: 12px; color: #64748b;">Tổng tiền: </span>
+              <span class="order-total-val">${formatVND(ord.total)}</span>
+            </div>
+          </div>
+
+          <div class="order-card-actions">
+            ${isCancelled ? `
+              <div class="order-cancelled-notice">
+                <span>🚫 Đơn hàng đã được hủy</span>
+                ${ord.cancelReason ? `<span style="color: #b91c1c;">(Lý do: ${ord.cancelReason})</span>` : ''}
+                ${ord.cancelledAt ? `<span style="font-size: 11px; color: #94a3b8;">— lúc ${ord.cancelledAt}</span>` : ''}
+              </div>
+            ` : `
+              <button type="button" class="btn-cancel-order" onclick="requestCancelOrder('${ord.id}')">
+                <span>✕</span> Hủy Đơn Hàng
+              </button>
+            `}
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   overlay.classList.add('active');
@@ -1779,6 +1797,76 @@ function closeOrdersModal() {
     overlay.setAttribute('aria-hidden', 'true');
   }
   if (modal) modal.setAttribute('aria-hidden', 'true');
+}
+
+// Order Cancellation Logic
+let orderIdToCancel = null;
+
+function requestCancelOrder(orderId) {
+  orderIdToCancel = orderId;
+  const overlay = document.getElementById('cancel-modal-overlay');
+  const modal = document.getElementById('cancel-modal');
+  const label = document.getElementById('cancel-order-id-label');
+  const select = document.getElementById('cancel-reason-select');
+  const customWrap = document.getElementById('cancel-custom-reason-wrap');
+  const customInput = document.getElementById('cancel-custom-reason-input');
+
+  if (label) label.textContent = orderId;
+  if (select) select.value = 'Đổi ý, không muốn mua nữa';
+  if (customWrap) customWrap.style.display = 'none';
+  if (customInput) customInput.value = '';
+
+  if (overlay && modal) {
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+}
+
+function handleCancelReasonChange(val) {
+  const customWrap = document.getElementById('cancel-custom-reason-wrap');
+  if (customWrap) {
+    customWrap.style.display = (val === 'Khác') ? 'block' : 'none';
+  }
+}
+
+function closeCancelModal() {
+  orderIdToCancel = null;
+  const overlay = document.getElementById('cancel-modal-overlay');
+  const modal = document.getElementById('cancel-modal');
+  if (overlay) {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  if (modal) modal.setAttribute('aria-hidden', 'true');
+}
+
+function confirmCancelOrder() {
+  if (!orderIdToCancel) return;
+
+  const select = document.getElementById('cancel-reason-select');
+  const customInput = document.getElementById('cancel-custom-reason-input');
+  let reason = select ? select.value : 'Đổi ý, không muốn mua nữa';
+  if (reason === 'Khác' && customInput && customInput.value.trim()) {
+    reason = customInput.value.trim();
+  }
+
+  try {
+    let orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+    const targetOrder = orders.find(o => String(o.id) === String(orderIdToCancel));
+    if (targetOrder) {
+      targetOrder.status = 'Đã hủy';
+      targetOrder.cancelReason = reason;
+      targetOrder.cancelledAt = new Date().toLocaleString('vi-VN');
+      localStorage.setItem('nova_orders', JSON.stringify(orders));
+      showToast(`❌ Đã hủy đơn hàng #${orderIdToCancel} thành công`);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  closeCancelModal();
+  openOrdersModal();
 }
 
 // 7. Search & Filter Controls
