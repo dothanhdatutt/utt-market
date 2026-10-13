@@ -8,6 +8,27 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 219,
+    title: 'Máy sấy tóc Panasonic',
+    price: 55000,
+    oldPrice: 130000,
+    discount: '-58%',
+    rating: 4.9,
+    sold: '51',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-may-say-toc-panasonic.jpg',
+    category: 'home',
+    description: 'Máy sấy tóc Panasonic công suất mạnh mẽ, thiết kế màu đỏ mận sang trọng, có móc treo tường gọn gàng tiện lợi. Máy có chế độ sấy nóng và sấy mát bảo vệ tóc, luồng gió mạnh làm khô tóc nhanh chóng, dây điện bọc cao su dày dặn an toàn.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Máy sấy tóc Panasonic' },
+      { label: 'Thương hiệu', value: 'Panasonic' },
+      { label: 'Màu sắc', value: 'Đỏ mận phối đen' },
+      { label: 'Tính năng', value: '2 chế độ sấy nóng / mát, luồng gió mạnh, móc treo tường' },
+      { label: 'Tình trạng', value: 'Mới 98%, động cơ êm ái, hoạt động hoàn hảo' }
+    ]
+  },
+  {
     id: 218,
     title: 'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
     price: 55000,
@@ -1827,9 +1848,12 @@ function setupSearch() {
   if (!input) return;
 
   const sampleKeywords = [
+    'Máy sấy tóc Panasonic',
+    'Máy sấy tóc',
+    'Bộ rổ rửa',
+    'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
     'Tai nghe',
     'Nồi cơm điện Kangaroo',
-    'Combo bộ rổ rửa + giỏ đựng quần áo bằng nhựa',
     'Tâm lý học tội phạm 1+2',
     'Chân dung phác hoạ',
     'Sự im lặng của bầy cừu',
