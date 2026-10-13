@@ -8,6 +8,152 @@
 // 1. Data Store
 const PRODUCTS_DATA = [
   {
+    id: 201,
+    title: 'Túi đựng laptop 15,6 inch',
+    price: 80000,
+    oldPrice: 150000,
+    discount: '-47%',
+    rating: 4.9,
+    sold: '64',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-tui-laptop.jpg',
+    category: 'electronics',
+    description: 'Túi đựng laptop 15,6 inch Phúc Anh chính hãng chống sốc cao cấp. Lớp mút đệm dày dặn đàn hồi cao bảo vệ máy tính xách tay an toàn tuyệt đối khi di chuyển giữa giảng đường và ký túc xá. Thiết kế màu đen tối giản, khóa kéo kim loại bền bỉ trơn tru, vải ngoài chống bụi bẩn.',
+    specs: [
+      { label: 'Tên sản phẩm', value: 'Túi đựng laptop 15,6 inch' },
+      { label: 'Thương hiệu', value: 'Phúc Anh' },
+      { label: 'Kích thước', value: 'Tương thích máy 14 - 15.6 inch' },
+      { label: 'Màu sắc', value: 'Đen' },
+      { label: 'Tình trạng', value: 'Mới 99%, khóa kéo trơn tru' }
+    ]
+  },
+  {
+    id: 202,
+    title: 'Bộ đồng phục thể chất UTT size M',
+    price: 150000,
+    oldPrice: 280000,
+    discount: '-46%',
+    rating: 5.0,
+    sold: '38',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-dong-phuc-the-chat-utt.jpg',
+    category: 'fashion',
+    description: 'Trọn bộ đồng phục thể chất Trường Đại học Công nghệ Giao thông Vận tải (UTT) size M chuẩn chỉ, bao gồm 1 áo polo thể dục cộc tay và 1 quần short thể dục đồng bộ. Ngực áo in thêu logo University of Transport Technology sắc nét. Chất vải thể thao co giãn 4 chiều mềm mát, thấm hút mồ hôi tối ưu khi học giáo dục thể chất, đá bóng, cầu lông.',
+    specs: [
+      { label: 'Bộ sản phẩm', value: 'Bộ đồng phục thể chất UTT (1 Áo + 1 Quần)' },
+      { label: 'Size', value: 'M (Phù hợp 50kg - 65kg, cao 1m60 - 1m70)' },
+      { label: 'Trường', value: 'ĐH Công nghệ Giao thông Vận tải (UTT)' },
+      { label: 'Tình trạng', value: 'Mới 98%, vải bền đẹp không bai xù' },
+      { label: 'Giao hàng', value: 'Freeship ký túc xá UTT & Campus Triều Khúc' }
+    ]
+  },
+  {
+    id: 203,
+    title: 'Máy ảnh Booie Retro Korea',
+    price: 500000,
+    oldPrice: 850000,
+    discount: '-41%',
+    rating: 5.0,
+    sold: '22',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-may-anh-booie-retro.jpg',
+    category: 'electronics',
+    description: 'Máy ảnh kỹ thuật số phong cách cổ điển Booie Retro Korea cực hot hit cho các bạn trẻ thích vibe ảnh film vintage Y2K. Thiết kế nhỏ gọn tông màu xanh pastel thanh lịch, tích hợp cảm biến chụp ảnh sắc nét, có flash đánh sáng ban đêm, màn hình xem lại và kèm dây đeo hạt cườm pastel xinh xắn.',
+    specs: [
+      { label: 'Thương hiệu', value: 'Booie Korean Retro Digital' },
+      { label: 'Phong cách', value: 'Vintage Retro Y2K Korea' },
+      { label: 'Màu sắc', value: 'Pastel Blue' },
+      { label: 'Tính năng', value: 'Cảm biến kỹ thuật số, Flash ban đêm, Pin sạc tiện lợi' },
+      { label: 'Tình trạng', value: 'Mới 99%, hoạt động hoàn hảo, đầy đủ phụ kiện' }
+    ]
+  },
+  {
+    id: 204,
+    title: 'Áo khoác UTT size M',
+    price: 160000,
+    oldPrice: 300000,
+    discount: '-47%',
+    rating: 4.9,
+    sold: '52',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-ao-khoac-utt.jpg',
+    category: 'fashion',
+    description: 'Áo khoác gió đồng phục mùa đông Trường Đại học Công nghệ Giao thông Vận tải (UTT) size M. Thiết kế bomber raglan phối màu xanh than - trắng viền cam đặc trưng UTT. Vải dù gió 2 lớp dày dặn, cản gió giữ ấm và chống mưa bụi nhẹ hiệu quả, bo dệt co giãn ở cổ áo, cổ tay và gấu áo.',
+    specs: [
+      { label: 'Loại trang phục', value: 'Áo khoác gió đồng phục mùa đông UTT' },
+      { label: 'Size', value: 'M (Phù hợp 52kg - 65kg, cao 1m60 - 1m72)' },
+      { label: 'Chất liệu', value: 'Vải dù gió 2 lớp cản gió chống lạnh' },
+      { label: 'Màu sắc', value: 'Xanh Navy phối trắng viền cam UTT' },
+      { label: 'Tình trạng', value: 'Mới 98%, khóa zip mượt mà' }
+    ]
+  },
+  {
+    id: 205,
+    title: 'Áo đồng phục mùa hè UTT size 2XL',
+    price: 130000,
+    oldPrice: 220000,
+    discount: '-41%',
+    rating: 4.9,
+    sold: '29',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-ao-dong-phuc-mua-he-utt.jpg',
+    category: 'fashion',
+    description: 'Áo thun polo cộc tay đồng phục mùa hè Trường Đại học Công nghệ Giao thông Vận tải (UTT) size 2XL form rộng rãi thoải mái. Phối màu cam hai bên sườn và tay áo xanh navy, thân trắng in/thêu logo University of Transport Technology. Chất vải thun mè thể thao siêu thoáng mát, thấm hút mồ hôi tối đa.',
+    specs: [
+      { label: 'Loại trang phục', value: 'Áo polo cộc tay đồng phục mùa hè UTT' },
+      { label: 'Size', value: '2XL (Form rộng thoải mái 75kg - 90kg hoặc thích mặc oversize)' },
+      { label: 'Màu sắc', value: 'Trắng phối cam sườn & tay xanh Navy' },
+      { label: 'Chất liệu', value: 'Thun mè thể thao mềm mát kháng khuẩn' },
+      { label: 'Tình trạng', value: 'Mới 99%, thơm tho sạch sẽ' }
+    ]
+  },
+  {
+    id: 206,
+    title: 'Vợt cầu lông',
+    price: 200000,
+    oldPrice: 380000,
+    discount: '-47%',
+    rating: 5.0,
+    sold: '41',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-vot-cau-long.jpg',
+    category: 'sports',
+    description: 'Vợt cầu lông TORNADO công nghệ Woven Graphite cao cấp siêu bền. Khung vợt High Control System trợ lực tốt, đan sẵn cước đỏ lực căng chuẩn, cho các cú đánh phông cầu sâu và đập smash uy lực. Thích hợp cho học phần giáo dục thể chất UTT và thi đấu thể thao sinh viên.',
+    specs: [
+      { label: 'Dòng vợt', value: 'TORNADO Woven Graphite' },
+      { label: 'Khung & Thân', value: 'Carbon Graphite High Control System' },
+      { label: 'Dây cước', value: 'Đã đan cước đỏ chuẩn, độ nảy và trợ lực tốt' },
+      { label: 'Tình trạng', value: 'Mới 95%, nguyên vẹn không rạn nứt, cầm chắc tay' }
+    ]
+  },
+  {
+    id: 207,
+    title: 'Vợt Pickleball',
+    price: 80000,
+    oldPrice: 180000,
+    discount: '-56%',
+    rating: 4.9,
+    sold: '73',
+    isMall: false,
+    freeship: true,
+    image: './assets/images/product-vot-pickleball.jpg',
+    category: 'sports',
+    description: 'Vợt Pickleball VIGORBALL Professional đạt chuẩn thi đấu USA Pickleball Approved. Bề mặt Frosted Surface nhám tăng độ xoáy bóng, kết cấu 3K Carbon 16mm đầm tay kết hợp lõi tổ ong PP Honeycomb Core trợ lực và triệt tiêu rung chấn bảo vệ cổ tay. Cán cầm bọc da trắng êm ái chống trơn trượt.',
+    specs: [
+      { label: 'Thương hiệu', value: 'VIGORBALL Professional' },
+      { label: 'Tiêu chuẩn', value: 'USA Pickleball Approved' },
+      { label: 'Mặt vợt & Độ dày', value: '3K Carbon 16mm Frosted Surface' },
+      { label: 'Lõi vợt', value: 'PP Honeycomb Core tổ ong trợ lực' },
+      { label: 'Tình trạng', value: 'Mới 99%, bề mặt và cán cầm như mới' }
+    ]
+  },
+  {
     id: 101,
     title: 'Sách bài tập Toán đại cương',
     price: 10000,
@@ -396,7 +542,8 @@ function openProductModal(productId) {
 
   const catNames = {
     'fashion': 'Thời Trang & Đồng Phục',
-    'electronics': 'Thiết Bị Điện Tử & Số',
+    'electronics': 'Thiết Bị Điện Tử & Phụ Kiện',
+    'sports': 'Thể Thao & Dụng Cụ',
     'beauty': 'Làm Đẹp & Sức Khỏe',
     'home': 'Nhà Cửa & Đời Sống',
     'books': 'Sách & Giáo Trình Học Tập'
@@ -1451,6 +1598,14 @@ function setupSearch() {
   if (!input) return;
 
   const sampleKeywords = [
+    'Túi đựng laptop 15,6 inch',
+    'Bộ đồng phục thể chất UTT size M',
+    'Máy ảnh Booie Retro Korea',
+    'Áo khoác UTT size M',
+    'Áo đồng phục mùa hè UTT size 2XL',
+    'Vợt cầu lông',
+    'Vợt Pickleball',
+    'Pass áo cũ UTT đẹp mới mặc 1 lần',
     'Sách bài tập Toán đại cương',
     'Tập bài giảng Toán đại cương',
     'Nguyên lý kế toán',
