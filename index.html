@@ -50,7 +50,7 @@
         <li><a href="#care" class="top-bar__link">Chăm Sóc Khách Hàng</a></li>
       </ul>
       <ul class="top-bar__list" id="user-nav-container" aria-label="Tài khoản">
-        <li><a href="#tracking" class="top-bar__link">Kiểm Tra Đơn Hàng</a></li>
+        <li><a href="#tracking" class="top-bar__link" id="top-tracking-link" onclick="openOrdersModal(); return false;">Kiểm Tra Đơn Hàng</a></li>
         <li id="auth-guest-links">
           <button type="button" class="top-bar__link" id="nav-login-btn">Đăng Nhập</button>
           <span style="margin: 0 4px; color: #ccc;">|</span>
@@ -127,6 +127,9 @@
                 <span class="header__user-dropdown-label">Xin chào,</span>
                 <strong id="header-dropdown-name">Thành viên</strong>
               </div>
+              <button type="button" class="header__user-dropdown-item" id="header-orders-btn" onclick="openOrdersModal()" role="menuitem" style="width: 100%; text-align: left; padding: 10px 14px; background: none; border: none; font-size: 13px; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9;">
+                📦 Đơn Hàng Của Tôi
+              </button>
               <button type="button" class="header__user-dropdown-logout" id="header-logout-btn" role="menuitem">
                 🚪 Đăng Xuất
               </button>
@@ -544,7 +547,295 @@
     </div>
   </div>
 
+  <!-- CHECKOUT & PAYMENT MODAL (ĐẶT HÀNG, ĐỊA CHỈ & THANH TOÁN) -->
+  <div class="checkout-modal-overlay" id="checkout-modal-overlay" aria-hidden="true" onclick="if(event.target===this)closeCheckoutModal()">
+    <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title" aria-hidden="true">
+      <div class="checkout-modal__header">
+        <div class="checkout-modal__header-left">
+          <h2 class="checkout-modal__title" id="checkout-modal-title">
+            <span class="checkout-header-icon">🛒</span> Xác Nhận Đặt Hàng &amp; Thanh Toán
+          </h2>
+          <div class="checkout-steps-badge">
+            <span class="step-badge active"><i class="step-num">1</i> Địa chỉ giao hàng</span>
+            <span class="step-arrow">&rsaquo;</span>
+            <span class="step-badge active"><i class="step-num">2</i> Phương thức thanh toán</span>
+            <span class="step-arrow">&rsaquo;</span>
+            <span class="step-badge" id="step-badge-finish"><i class="step-num">3</i> Hoàn tất đơn</span>
+          </div>
+        </div>
+        <button type="button" class="checkout-modal__close-btn" id="checkout-modal-close" onclick="closeCheckoutModal()" aria-label="Đóng cửa sổ đặt hàng">✕</button>
+      </div>
+
+      <!-- MAIN CHECKOUT CONTENT -->
+      <div class="checkout-modal__body" id="checkout-main-content">
+        <div class="checkout-grid">
+          <!-- LEFT COLUMN: ADDRESS & PAYMENT -->
+          <div class="checkout-left-col">
+            <!-- 1. SHIPPING ADDRESS SECTION -->
+            <section class="checkout-section" aria-labelledby="sec-address-title">
+              <div class="checkout-section__header">
+                <div class="checkout-section__title-wrap">
+                  <span class="sec-icon">📍</span>
+                  <h3 class="checkout-section__title" id="sec-address-title">1. Thông Tin &amp; Địa Chỉ Giao Hàng</h3>
+                </div>
+                <div class="checkout-address-presets">
+                  <span class="preset-label">Mẫu nhanh:</span>
+                  <button type="button" class="preset-btn" onclick="applyAddressPreset('utt')">ĐH Công Nghệ GTVT</button>
+                  <button type="button" class="preset-btn" onclick="applyAddressPreset('ktx')">KTX 54 Triều Khúc</button>
+                  <button type="button" class="preset-btn" onclick="applyAddressPreset('home')">Nhà Riêng HN</button>
+                </div>
+              </div>
+
+              <div class="checkout-form-grid">
+                <div class="checkout-form-group">
+                  <label for="checkout-name" class="checkout-label">Họ và tên người nhận <span class="required">*</span></label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="checkout-name" class="checkout-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="name" required>
+                  </div>
+                  <div class="field-error" id="err-checkout-name"></div>
+                </div>
+
+                <div class="checkout-form-group">
+                  <label for="checkout-phone" class="checkout-label">Số điện thoại nhận hàng <span class="required">*</span></label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">📞</span>
+                    <input type="tel" id="checkout-phone" class="checkout-input" placeholder="Ví dụ: 0912345678" autocomplete="tel" required>
+                  </div>
+                  <div class="field-error" id="err-checkout-phone"></div>
+                </div>
+
+                <div class="checkout-form-group">
+                  <label for="checkout-city" class="checkout-label">Tỉnh / Thành phố <span class="required">*</span></label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">🏙️</span>
+                    <select id="checkout-city" class="checkout-select" onchange="handleCityChange()">
+                      <option value="Hà Nội" selected>Hà Nội</option>
+                      <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                      <option value="Đà Nẵng">Đà Nẵng</option>
+                      <option value="Hải Phòng">Hải Phòng</option>
+                      <option value="Cần Thơ">Cần Thơ</option>
+                      <option value="Bình Dương">Bình Dương</option>
+                      <option value="Đồng Nai">Đồng Nai</option>
+                      <option value="Thái Nguyên">Thái Nguyên</option>
+                      <option value="Quảng Ninh">Quảng Ninh</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="checkout-form-group">
+                  <label for="checkout-district" class="checkout-label">Quận / Huyện <span class="required">*</span></label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">🏘️</span>
+                    <select id="checkout-district" class="checkout-select">
+                      <option value="Quận Thanh Xuân" selected>Quận Thanh Xuân</option>
+                      <option value="Quận Đống Đa">Quận Đống Đa</option>
+                      <option value="Quận Cầu Giấy">Quận Cầu Giấy</option>
+                      <option value="Quận Nam Từ Liêm">Quận Nam Từ Liêm</option>
+                      <option value="Quận Hà Đông">Quận Hà Đông</option>
+                      <option value="Quận Hai Bà Trưng">Quận Hai Bà Trưng</option>
+                      <option value="Quận Ba Đình">Quận Ba Đình</option>
+                      <option value="Quận Hoàng Mai">Quận Hoàng Mai</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="checkout-form-group checkout-form-group--full">
+                  <label for="checkout-address" class="checkout-label">Địa chỉ chi tiết (Số nhà, tên đường, ngõ, tòa nhà) <span class="required">*</span></label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">🏠</span>
+                    <input type="text" id="checkout-address" class="checkout-input" placeholder="Ví dụ: Số 54 Phố Triều Khúc, Phường Thanh Xuân Nam" required>
+                  </div>
+                  <div class="field-error" id="err-checkout-address"></div>
+                </div>
+
+                <div class="checkout-form-group checkout-form-group--full">
+                  <label for="checkout-note" class="checkout-label">Ghi chú giao hàng (Không bắt buộc)</label>
+                  <div class="checkout-input-wrap">
+                    <span class="input-icon">📝</span>
+                    <input type="text" id="checkout-note" class="checkout-input" placeholder="Ví dụ: Giao giờ hành chính, gọi trước khi giao hàng 15 phút...">
+                  </div>
+                </div>
+
+                <div class="checkout-form-group checkout-form-group--full">
+                  <label class="checkout-checkbox-label">
+                    <input type="checkbox" id="checkout-save-address" checked>
+                    <span>Lưu thông tin giao hàng này làm mặc định cho lần mua sau</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <!-- 2. PAYMENT METHOD SECTION -->
+            <section class="checkout-section" aria-labelledby="sec-payment-title">
+              <div class="checkout-section__header">
+                <div class="checkout-section__title-wrap">
+                  <span class="sec-icon">💳</span>
+                  <h3 class="checkout-section__title" id="sec-payment-title">2. Phương Thức Thanh Toán</h3>
+                </div>
+                <span class="payment-secure-badge">🔒 Bảo mật SSL 256-bit</span>
+              </div>
+
+              <div class="payment-methods-list" role="radiogroup" aria-label="Chọn phương thức thanh toán">
+                <!-- Option 1: COD -->
+                <label class="payment-method-card active" id="card-pay-cod" for="pay-cod">
+                  <input type="radio" name="payment_method" id="pay-cod" value="cod" checked onchange="handlePaymentMethodChange('cod')">
+                  <div class="pay-method-icon pay-icon--cod">💵</div>
+                  <div class="pay-method-content">
+                    <div class="pay-method-title">
+                      <strong>Thanh toán khi nhận hàng (COD)</strong>
+                      <span class="pay-badge pay-badge--popular">Phổ biến</span>
+                    </div>
+                    <p class="pay-method-desc">Kiểm tra sản phẩm trước khi thanh toán tiền mặt trực tiếp cho bưu tá giao hàng.</p>
+                  </div>
+                </label>
+
+                <!-- Option 2: VietQR / Bank Transfer -->
+                <label class="payment-method-card" id="card-pay-vietqr" for="pay-vietqr">
+                  <input type="radio" name="payment_method" id="pay-vietqr" value="vietqr" onchange="handlePaymentMethodChange('vietqr')">
+                  <div class="pay-method-icon pay-icon--qr">🏦</div>
+                  <div class="pay-method-content">
+                    <div class="pay-method-title">
+                      <strong>Chuyển khoản QR Ngân hàng (VietQR 24/7)</strong>
+                      <span class="pay-badge pay-badge--recommend">Khuyên dùng</span>
+                    </div>
+                    <p class="pay-method-desc">Quét mã QR tự động qua ứng dụng mọi ngân hàng (MB Bank, VCB, BIDV, Techcombank...).</p>
+                  </div>
+                </label>
+
+                <!-- Option 3: MoMo -->
+                <label class="payment-method-card" id="card-pay-momo" for="pay-momo">
+                  <input type="radio" name="payment_method" id="pay-momo" value="momo" onchange="handlePaymentMethodChange('momo')">
+                  <div class="pay-method-icon pay-icon--momo">🟣</div>
+                  <div class="pay-method-content">
+                    <div class="pay-method-title">
+                      <strong>Ví Điện Tử MoMo</strong>
+                      <span class="pay-badge pay-badge--wallet">Ví điện tử</span>
+                    </div>
+                    <p class="pay-method-desc">Thanh toán siêu tốc 1 chạm qua ứng dụng ví điện tử MoMo.</p>
+                  </div>
+                </label>
+
+                <!-- Option 4: Credit / Debit Card -->
+                <label class="payment-method-card" id="card-pay-card" for="pay-card">
+                  <input type="radio" name="payment_method" id="pay-card" value="card" onchange="handlePaymentMethodChange('card')">
+                  <div class="pay-method-icon pay-icon--card">💳</div>
+                  <div class="pay-method-content">
+                    <div class="pay-method-title">
+                      <strong>Thẻ Quốc Tế / ATM Nội Địa (Visa, Master, Napas)</strong>
+                      <span class="pay-badge pay-badge--card">3D Secure</span>
+                    </div>
+                    <p class="pay-method-desc">Hỗ trợ thẻ tín dụng, thẻ ghi nợ quốc tế Visa, MasterCard hoặc thẻ ATM nội địa.</p>
+                  </div>
+                </label>
+
+                <!-- Option 5: VNPay / ZaloPay -->
+                <label class="payment-method-card" id="card-pay-vnpay" for="pay-vnpay">
+                  <input type="radio" name="payment_method" id="pay-vnpay" value="vnpay" onchange="handlePaymentMethodChange('vnpay')">
+                  <div class="pay-method-icon pay-icon--vnpay">⚡</div>
+                  <div class="pay-method-content">
+                    <div class="pay-method-title">
+                      <strong>Cổng VNPAY-QR / Ví ZaloPay</strong>
+                      <span class="pay-badge pay-badge--vnpay">Ưu đãi</span>
+                    </div>
+                    <p class="pay-method-desc">Quét mã VNPay QR qua hơn 30 ứng dụng ngân hàng và ví ZaloPay.</p>
+                  </div>
+                </label>
+              </div>
+
+              <!-- DYNAMIC PAYMENT DETAILS SUB-BOX -->
+              <div class="payment-detail-container" id="payment-detail-container" style="display: none;">
+                <!-- Content dynamically injected for QR / Card / MoMo -->
+              </div>
+            </section>
+          </div>
+
+          <!-- RIGHT COLUMN: ORDER SUMMARY & TOTAL -->
+          <div class="checkout-right-col">
+            <div class="checkout-summary-card">
+              <div class="checkout-summary-header">
+                <h3 class="checkout-summary-title">Tóm Tắt Đơn Hàng</h3>
+                <span class="checkout-items-count" id="checkout-items-count">0 sản phẩm</span>
+              </div>
+
+              <!-- ORDER ITEMS LIST -->
+              <div class="checkout-items-list" id="checkout-items-list">
+                <!-- Dynamically populated -->
+              </div>
+
+              <!-- VOUCHER CODE BOX -->
+              <div class="checkout-voucher-section">
+                <div class="checkout-voucher-input-row">
+                  <input type="text" id="checkout-voucher-code" class="checkout-voucher-input" placeholder="Mã giảm giá (VD: NOVA50K)">
+                  <button type="button" class="checkout-voucher-btn" onclick="applyCheckoutVoucher()">Áp Dụng</button>
+                </div>
+                <div class="checkout-voucher-tags">
+                  <button type="button" class="voucher-quick-tag" onclick="useQuickVoucher('NOVA50K')">Giảm ₫50k: NOVA50K</button>
+                  <button type="button" class="voucher-quick-tag" onclick="useQuickVoucher('FREESHIP')">Freeship: FREESHIP</button>
+                </div>
+                <div class="voucher-applied-msg" id="checkout-voucher-msg"></div>
+              </div>
+
+              <!-- BILLING SUMMARY -->
+              <div class="checkout-bill">
+                <div class="bill-row">
+                  <span>Tạm tính tiền hàng:</span>
+                  <span id="checkout-bill-subtotal">₫0</span>
+                </div>
+                <div class="bill-row">
+                  <span>Phí vận chuyển toàn quốc:</span>
+                  <span class="text-success"><s class="old-fee">₫30.000</s> MIỄN PHÍ</span>
+                </div>
+                <div class="bill-row" id="checkout-bill-discount-row" style="display: none;">
+                  <span>Giảm giá Voucher:</span>
+                  <span class="text-discount" id="checkout-bill-discount">-₫0</span>
+                </div>
+                <div class="bill-row bill-row--total">
+                  <span>Tổng tiền thanh toán:</span>
+                  <span class="checkout-final-price" id="checkout-bill-total">₫0</span>
+                </div>
+                <div class="bill-vat-note">(Đã bao gồm thuế GTGT &amp; bảo hiểm hàng hóa)</div>
+              </div>
+
+              <!-- SUBMIT BUTTON -->
+              <button type="button" class="checkout-submit-btn" id="btn-place-order" onclick="submitOrder()">
+                <span id="btn-place-order-text">Xác Nhận &amp; Đặt Hàng</span>
+              </button>
+
+              <!-- TRUST BADGES -->
+              <div class="checkout-trust-badges">
+                <div class="trust-item"><span>🛡️</span> 100% An toàn</div>
+                <div class="trust-item"><span>📦</span> Kiểm tra khi nhận</div>
+                <div class="trust-item"><span>🔄</span> Đổi trả trong 7 ngày</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS CONFIRMATION VIEW -->
+      <div class="checkout-success-view" id="checkout-success-view" style="display: none;">
+        <!-- Injected upon successful order -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER HISTORY & TRACKING MODAL -->
+  <div class="orders-modal-overlay" id="orders-modal-overlay" aria-hidden="true" onclick="if(event.target===this)closeOrdersModal()">
+    <div class="orders-modal" id="orders-modal" role="dialog" aria-modal="true" aria-labelledby="orders-modal-title" aria-hidden="true">
+      <div class="orders-modal__header">
+        <h2 class="orders-modal__title" id="orders-modal-title">
+          <span>📦</span> Quản Lý Đơn Hàng Của Tôi
+        </h2>
+        <button type="button" class="checkout-modal__close-btn" onclick="closeOrdersModal()" aria-label="Đóng đơn hàng">✕</button>
+      </div>
+      <div class="orders-modal__body" id="orders-modal-body">
+        <!-- Dynamically rendered order history -->
+      </div>
+    </div>
+  </div>
+
   <!-- Application Script -->
-  <script src="./js/app.js?v=8"></script>
+  <script src="./js/app.js?v=9"></script>
 </body>
 </html>

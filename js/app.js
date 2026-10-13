@@ -548,7 +548,7 @@ function addModalProductToCart(productId, buyNow) {
 
   if (buyNow) {
     closeProductModal();
-    toggleCartDrawer(true);
+    openCheckoutModal();
   }
 }
 
@@ -691,19 +691,697 @@ function toggleCartDrawer(open) {
   }
 }
 
+// ==========================================================================
+// 6. CHECKOUT, DELIVERY ADDRESS & PAYMENT SYSTEM
+// ==========================================================================
+let selectedPaymentMethod = 'cod';
+let checkoutVoucherDiscount = 0;
+
+const ADDRESS_PRESETS = {
+  utt: {
+    name: 'Nguyễn Văn An',
+    phone: '0988123456',
+    city: 'Hà Nội',
+    district: 'Quận Thanh Xuân',
+    address: 'Số 54 Phố Triều Khúc, Phường Thanh Xuân Nam (Trụ sở chính ĐH Công Nghệ GTVT)',
+    note: 'Giao tại sảnh nhà H1 hoặc bảo vệ, gọi trước 10 phút'
+  },
+  ktx: {
+    name: 'Trần Thị Mai',
+    phone: '0976654321',
+    city: 'Hà Nội',
+    district: 'Quận Thanh Xuân',
+    address: 'Ký Túc Xá Sinh Viên UTT, 54 Triều Khúc, Tòa nhà KTX, Phòng 302',
+    note: 'Giao sau giờ tan học chiều hoặc gửi bác quản lý KTX'
+  },
+  home: {
+    name: 'Lê Quốc Bảo',
+    phone: '0912345678',
+    city: 'Hà Nội',
+    district: 'Quận Đống Đa',
+    address: 'Số 12 Ngõ 95 Chùa Bộc, Phường Trung Liệt',
+    note: 'Giao trong giờ hành chính, bấm chuông cổng'
+  }
+};
+
+const CITY_DISTRICTS = {
+  'Hà Nội': ['Quận Thanh Xuân', 'Quận Đống Đa', 'Quận Cầu Giấy', 'Quận Nam Từ Liêm', 'Quận Bắc Từ Liêm', 'Quận Hà Đông', 'Quận Hai Bà Trưng', 'Quận Ba Đình', 'Quận Hoàng Mai', 'Huyện Thanh Trì'],
+  'TP. Hồ Chí Minh': ['Quận 1', 'Quận 3', 'Quận 5', 'Quận 7', 'Quận 10', 'Quận Bình Thạnh', 'Quận Tân Bình', 'Thành phố Thủ Đức', 'Quận Gò Vấp'],
+  'Đà Nẵng': ['Quận Hải Châu', 'Quận Thanh Khê', 'Quận Sơn Trà', 'Quận Ngũ Hành Sơn', 'Quận Liên Chiểu'],
+  'Hải Phòng': ['Quận Hồng Bàng', 'Quận Ngô Quyền', 'Quận Lê Chân', 'Quận Hải An'],
+  'Cần Thơ': ['Quận Ninh Kiều', 'Quận Bình Thủy', 'Quận Cái Răng', 'Quận Ô Môn'],
+  'Bình Dương': ['TP. Thủ Dầu Một', 'TP. Thuận An', 'TP. Dĩ An', 'Thị xã Bến Cát'],
+  'Đồng Nai': ['TP. Biên Hòa', 'TP. Long Khánh', 'Huyện Long Thành'],
+  'Thái Nguyên': ['TP. Thái Nguyên', 'TP. Sông Công', 'Thị xã Phổ Yên'],
+  'Quảng Ninh': ['TP. Hạ Long', 'TP. Cẩm Phả', 'TP. Uông Bí', 'Thị xã Quảng Yên']
+};
+
+function handleCityChange() {
+  const citySelect = document.getElementById('checkout-city');
+  const districtSelect = document.getElementById('checkout-district');
+  if (!citySelect || !districtSelect) return;
+
+  const city = citySelect.value;
+  const districts = CITY_DISTRICTS[city] || ['Quận / Huyện trung tâm'];
+  districtSelect.innerHTML = districts.map(d => `<option value="${d}">${d}</option>`).join('');
+}
+
+function applyAddressPreset(presetKey) {
+  const preset = ADDRESS_PRESETS[presetKey];
+  if (!preset) return;
+
+  const nameInput = document.getElementById('checkout-name');
+  const phoneInput = document.getElementById('checkout-phone');
+  const citySelect = document.getElementById('checkout-city');
+  const addressInput = document.getElementById('checkout-address');
+  const noteInput = document.getElementById('checkout-note');
+
+  if (nameInput) nameInput.value = (currentUser && currentUser.name) ? currentUser.name : preset.name;
+  if (phoneInput) phoneInput.value = (currentUser && currentUser.phone) ? currentUser.phone : preset.phone;
+  if (citySelect) {
+    citySelect.value = preset.city;
+    handleCityChange();
+    const districtSelect = document.getElementById('checkout-district');
+    if (districtSelect) districtSelect.value = preset.district;
+  }
+  if (addressInput) addressInput.value = preset.address;
+  if (noteInput) noteInput.value = preset.note;
+
+  // Clear any validation errors
+  ['name', 'phone', 'address'].forEach(f => {
+    const err = document.getElementById(`err-checkout-${f}`);
+    if (err) { err.textContent = ''; err.style.display = 'none'; }
+  });
+
+  showToast(`✅ Đã áp dụng mẫu địa chỉ: ${presetKey === 'utt' ? 'ĐH Công Nghệ GTVT' : presetKey === 'ktx' ? 'KTX UTT' : 'Nhà Riêng'}`);
+}
+
+function handlePaymentMethodChange(method) {
+  selectedPaymentMethod = method;
+
+  // Update card active classes
+  document.querySelectorAll('.payment-method-card').forEach(card => {
+    const radio = card.querySelector('input[type="radio"]');
+    if (radio) {
+      const isMatched = radio.value === method;
+      radio.checked = isMatched;
+      card.classList.toggle('active', isMatched);
+    }
+  });
+
+  // Render detail sub-box
+  const detailContainer = document.getElementById('payment-detail-container');
+  if (!detailContainer) return;
+
+  const total = Math.max(0, cart.reduce((s, i) => s + (i.price * i.qty), 0) - checkoutVoucherDiscount);
+  const formattedTotal = formatVND(total);
+  const orderRef = 'NOVA' + Math.floor(100000 + Math.random() * 900000);
+
+  if (method === 'cod') {
+    detailContainer.style.display = 'block';
+    detailContainer.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: #334155;">
+        <span style="font-size: 26px;">💵</span>
+        <div>
+          <strong style="color: #0369a1; display: block; margin-bottom: 2px;">Thanh toán khi nhận hàng (COD)</strong>
+          <span>Quý khách sẽ thanh toán đúng số tiền <strong>${formattedTotal}</strong> cho nhân viên bưu tá khi nhận và đồng kiểm kiện hàng.</span>
+        </div>
+      </div>
+    `;
+  } else if (method === 'vietqr') {
+    detailContainer.style.display = 'block';
+    detailContainer.innerHTML = `
+      <div class="vietqr-box">
+        <div class="vietqr-image-wrap">
+          <svg class="vietqr-mock-qr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="#ffffff" rx="4"/>
+            <rect x="8" y="8" width="28" height="28" fill="#081730" rx="3"/>
+            <rect x="12" y="12" width="20" height="20" fill="#ffffff"/>
+            <rect x="16" y="16" width="12" height="12" fill="#f57224"/>
+            <rect x="64" y="8" width="28" height="28" fill="#081730" rx="3"/>
+            <rect x="68" y="12" width="20" height="20" fill="#ffffff"/>
+            <rect x="72" y="16" width="12" height="12" fill="#f57224"/>
+            <rect x="8" y="64" width="28" height="28" fill="#081730" rx="3"/>
+            <rect x="12" y="68" width="20" height="20" fill="#ffffff"/>
+            <rect x="16" y="72" width="12" height="12" fill="#f57224"/>
+            <rect x="42" y="14" width="6" height="18" fill="#081730"/>
+            <rect x="42" y="38" width="16" height="6" fill="#081730"/>
+            <rect x="14" y="42" width="18" height="6" fill="#081730"/>
+            <rect x="48" y="48" width="14" height="14" fill="#0d2854" rx="2"/>
+            <rect x="68" y="44" width="24" height="6" fill="#081730"/>
+            <rect x="44" y="68" width="18" height="18" fill="#081730"/>
+            <rect x="68" y="68" width="8" height="8" fill="#f57224"/>
+            <rect x="82" y="78" width="10" height="10" fill="#081730"/>
+          </svg>
+          <span class="vietqr-note">Quét mã bằng mọi App Ngân hàng</span>
+        </div>
+        <div class="vietqr-info-list">
+          <div class="vietqr-row">
+            <span class="vietqr-label">Ngân hàng thụ hưởng:</span>
+            <span class="vietqr-val">🏦 MB Bank (Quân Đội)</span>
+          </div>
+          <div class="vietqr-row">
+            <span class="vietqr-label">Số tài khoản:</span>
+            <span class="vietqr-val">
+              <span>0988 888 999</span>
+              <button type="button" class="copy-btn" onclick="copyText('0988888999')">Sao chép</button>
+            </span>
+          </div>
+          <div class="vietqr-row">
+            <span class="vietqr-label">Chủ tài khoản:</span>
+            <span class="vietqr-val">NOVA MARKET VIETNAM</span>
+          </div>
+          <div class="vietqr-row">
+            <span class="vietqr-label">Số tiền:</span>
+            <span class="vietqr-val" style="color: #f57224;">${formattedTotal}</span>
+          </div>
+          <div class="vietqr-row">
+            <span class="vietqr-label">Nội dung CK:</span>
+            <span class="vietqr-val">
+              <span id="vietqr-code">${orderRef}</span>
+              <button type="button" class="copy-btn" onclick="copyText('${orderRef}')">Sao chép</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (method === 'momo') {
+    detailContainer.style.display = 'block';
+    detailContainer.innerHTML = `
+      <div class="momo-box">
+        <div class="momo-qr-wrap">
+          <span style="font-size: 42px;">🟣</span>
+        </div>
+        <div class="momo-info">
+          <strong style="color: #be185d; display: block; margin-bottom: 4px; font-size: 13px;">Thanh toán Ví MoMo</strong>
+          <p style="margin: 0 0 6px 0;">Mở ứng dụng <strong>MoMo</strong> &rarr; Chọn <strong>Quét mã</strong> hoặc chuyển ví số: <strong>0988 888 999</strong>.</p>
+          <div style="font-size: 11px; color: #64748b;">Số tiền cần thanh toán: <strong style="color: #f57224;">${formattedTotal}</strong></div>
+        </div>
+      </div>
+    `;
+  } else if (method === 'card') {
+    detailContainer.style.display = 'block';
+    detailContainer.innerHTML = `
+      <div>
+        <div style="font-size: 12px; font-weight: 600; color: #1e293b; margin-bottom: 8px;">Nhập Thông Tin Thẻ Thanh Toán Quốc Tế / Nội Địa:</div>
+        <div class="credit-card-form">
+          <div class="full">
+            <label class="checkout-label">Số Thẻ (16 chữ số)</label>
+            <input type="text" id="cc-number" class="checkout-input" placeholder="4111 •••• •••• 4444" maxlength="19" oninput="formatCardNumber(this)" style="padding-left: 12px;">
+          </div>
+          <div>
+            <label class="checkout-label">Ngày Hết Hạn</label>
+            <input type="text" id="cc-exp" class="checkout-input" placeholder="MM/YY" maxlength="5" oninput="formatCardExp(this)" style="padding-left: 12px;">
+          </div>
+          <div>
+            <label class="checkout-label">Mã Bảo Mật CVV / CVC</label>
+            <input type="password" id="cc-cvv" class="checkout-input" placeholder="•••" maxlength="4" style="padding-left: 12px;">
+          </div>
+          <div class="full">
+            <label class="checkout-label">Tên In Trên Thẻ (Không dấu)</label>
+            <input type="text" id="cc-name" class="checkout-input" placeholder="NGUYEN VAN AN" style="text-transform: uppercase; padding-left: 12px;">
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (method === 'vnpay') {
+    detailContainer.style.display = 'block';
+    detailContainer.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: #334155;">
+        <span style="font-size: 28px;">⚡</span>
+        <div>
+          <strong style="color: #b45309; display: block; margin-bottom: 3px;">Cổng Thanh Toán VNPAY-QR</strong>
+          <span>Sau khi xác nhận đặt hàng, hệ thống sẽ mở cổng liên kết VNPAY để quý khách quét mã bằng 32+ ứng dụng Mobile Banking hoặc ví ZaloPay.</span>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function formatCardNumber(input) {
+  let val = input.value.replace(/\D/g, '').substring(0, 16);
+  let formatted = '';
+  for (let i = 0; i < val.length; i++) {
+    if (i > 0 && i % 4 === 0) formatted += ' ';
+    formatted += val[i];
+  }
+  input.value = formatted;
+}
+
+function formatCardExp(input) {
+  let val = input.value.replace(/\D/g, '').substring(0, 4);
+  if (val.length >= 2) {
+    input.value = val.substring(0, 2) + '/' + val.substring(2);
+  } else {
+    input.value = val;
+  }
+}
+
+function copyText(txt) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(() => {
+      showToast(`📋 Đã sao chép: ${txt}`);
+    }).catch(() => {
+      showToast(`Đã sao chép: ${txt}`);
+    });
+  } else {
+    showToast(`Đã sao chép: ${txt}`);
+  }
+}
+
+function openCheckoutModal() {
+  if (cart.length === 0) {
+    showToast('Giỏ hàng của bạn đang trống! Vui lòng chọn sản phẩm trước.');
+    return;
+  }
+
+  const modal = document.getElementById('checkout-modal');
+  const overlay = document.getElementById('checkout-modal-overlay');
+  const mainContent = document.getElementById('checkout-main-content');
+  const successView = document.getElementById('checkout-success-view');
+
+  if (!modal || !overlay) return;
+
+  // Sync voucher discount with cart drawer
+  checkoutVoucherDiscount = appliedVoucherDiscount || 0;
+
+  // Show main content, hide success view
+  if (mainContent) mainContent.style.display = 'block';
+  if (successView) successView.style.display = 'none';
+
+  // Load saved address or currentUser info
+  try {
+    const saved = localStorage.getItem('nova_saved_address');
+    if (saved) {
+      const addr = JSON.parse(saved);
+      if (addr.name) document.getElementById('checkout-name').value = addr.name;
+      if (addr.phone) document.getElementById('checkout-phone').value = addr.phone;
+      if (addr.city) {
+        document.getElementById('checkout-city').value = addr.city;
+        handleCityChange();
+        if (addr.district) document.getElementById('checkout-district').value = addr.district;
+      }
+      if (addr.address) document.getElementById('checkout-address').value = addr.address;
+      if (addr.note) document.getElementById('checkout-note').value = addr.note;
+    } else if (currentUser) {
+      if (currentUser.name) document.getElementById('checkout-name').value = currentUser.name;
+      if (currentUser.phone) document.getElementById('checkout-phone').value = currentUser.phone;
+    }
+  } catch (e) {}
+
+  // Render items in summary
+  renderCheckoutSummary();
+
+  // Reset payment method details
+  handlePaymentMethodChange(selectedPaymentMethod);
+
+  // Open modal
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+  document.getElementById('checkout-name')?.focus();
+}
+
+function closeCheckoutModal() {
+  const overlay = document.getElementById('checkout-modal-overlay');
+  const modal = document.getElementById('checkout-modal');
+  if (overlay) {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  if (modal) modal.setAttribute('aria-hidden', 'true');
+}
+
+function renderCheckoutSummary() {
+  const listEl = document.getElementById('checkout-items-list');
+  const countEl = document.getElementById('checkout-items-count');
+  const subtotalEl = document.getElementById('checkout-bill-subtotal');
+  const totalEl = document.getElementById('checkout-bill-total');
+  const discountRow = document.getElementById('checkout-bill-discount-row');
+  const discountEl = document.getElementById('checkout-bill-discount');
+  const btnTotalText = document.getElementById('btn-place-order-text');
+
+  if (!listEl) return;
+
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+  const finalTotal = Math.max(0, subtotal - checkoutVoucherDiscount);
+
+  if (countEl) countEl.textContent = `${totalQty} sản phẩm`;
+  if (subtotalEl) subtotalEl.textContent = formatVND(subtotal);
+  if (totalEl) totalEl.textContent = formatVND(finalTotal);
+
+  if (checkoutVoucherDiscount > 0) {
+    if (discountRow) discountRow.style.display = 'flex';
+    if (discountEl) discountEl.textContent = `-${formatVND(checkoutVoucherDiscount)}`;
+  } else {
+    if (discountRow) discountRow.style.display = 'none';
+  }
+
+  if (btnTotalText) {
+    btnTotalText.textContent = `Xác Nhận & Đặt Hàng (${formatVND(finalTotal)})`;
+  }
+
+  listEl.innerHTML = cart.map(item => `
+    <div class="checkout-item-row">
+      <img src="${item.image}" alt="${item.title}" class="checkout-item-img">
+      <div class="checkout-item-info">
+        <div class="checkout-item-name" title="${item.title}">${item.title}</div>
+        <div class="checkout-item-meta">
+          <span>SL: <strong>x${item.qty}</strong></span>
+          <span class="checkout-item-price">${formatVND(item.price * item.qty)}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function applyCheckoutVoucher() {
+  const input = document.getElementById('checkout-voucher-code');
+  const msgEl = document.getElementById('checkout-voucher-msg');
+  if (!input) return;
+
+  const code = input.value.trim().toUpperCase();
+  const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+
+  if (!code) {
+    showToast('Vui lòng nhập mã giảm giá');
+    return;
+  }
+
+  if (code === 'NOVA50K') {
+    if (subtotal < 100000) {
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#dc2626';
+        msgEl.textContent = 'Mã NOVA50K áp dụng cho đơn từ ₫100.000 trở lên.';
+      }
+      return;
+    }
+    checkoutVoucherDiscount = 50000;
+    appliedVoucherDiscount = 50000;
+  } else if (code === 'FREESHIP') {
+    checkoutVoucherDiscount = 30000;
+    appliedVoucherDiscount = 30000;
+  } else if (code === 'UTT2026' || code === 'NOVA100K') {
+    checkoutVoucherDiscount = 100000;
+    appliedVoucherDiscount = 100000;
+  } else {
+    if (msgEl) {
+      msgEl.style.display = 'block';
+      msgEl.style.color = '#dc2626';
+      msgEl.textContent = `Mã "${code}" không hợp lệ hoặc đã hết lượt.`;
+    }
+    return;
+  }
+
+  if (msgEl) {
+    msgEl.style.display = 'block';
+    msgEl.style.color = '#16a34a';
+    msgEl.textContent = `✅ Áp dụng mã ${code} thành công! Đã giảm ${formatVND(checkoutVoucherDiscount)}.`;
+  }
+
+  renderCheckoutSummary();
+  updateCartUI();
+  showToast(`🎉 Áp dụng mã ${code} thành công: Giảm ${formatVND(checkoutVoucherDiscount)}`);
+}
+
+function useQuickVoucher(code) {
+  const input = document.getElementById('checkout-voucher-code');
+  if (input) {
+    input.value = code;
+    applyCheckoutVoucher();
+  }
+}
+
 function handleCheckout() {
   if (cart.length === 0) {
     showToast('Giỏ hàng của bạn đang trống! Vui lòng chọn sản phẩm trước.');
     return;
   }
-  const count = cart.reduce((s, i) => s + i.qty, 0);
-  const total = Math.max(0, cart.reduce((s, i) => s + (i.price * i.qty), 0) - appliedVoucherDiscount);
-  
-  cart = [];
-  appliedVoucherDiscount = 0;
-  updateCartUI();
   toggleCartDrawer(false);
-  showToast(`Đặt hàng thành công ${count} sản phẩm! Tổng thanh toán: ${formatVND(total)}`);
+  openCheckoutModal();
+}
+
+function submitOrder() {
+  const nameEl = document.getElementById('checkout-name');
+  const phoneEl = document.getElementById('checkout-phone');
+  const cityEl = document.getElementById('checkout-city');
+  const districtEl = document.getElementById('checkout-district');
+  const addressEl = document.getElementById('checkout-address');
+  const noteEl = document.getElementById('checkout-note');
+  const saveCheckbox = document.getElementById('checkout-save-address');
+
+  const nameVal = nameEl ? nameEl.value.trim() : '';
+  const phoneVal = phoneEl ? phoneEl.value.trim() : '';
+  const cityVal = cityEl ? cityEl.value : 'Hà Nội';
+  const districtVal = districtEl ? districtEl.value : 'Quận Thanh Xuân';
+  const addressVal = addressEl ? addressEl.value.trim() : '';
+  const noteVal = noteEl ? noteEl.value.trim() : '';
+
+  let hasError = false;
+
+  // Validate Name
+  const errName = document.getElementById('err-checkout-name');
+  if (!nameVal || nameVal.length < 2) {
+    if (errName) { errName.textContent = 'Vui lòng nhập họ và tên người nhận'; errName.style.display = 'block'; }
+    hasError = true;
+  } else if (errName) {
+    errName.style.display = 'none';
+  }
+
+  // Validate Phone
+  const errPhone = document.getElementById('err-checkout-phone');
+  const phoneRegex = /^(0|\+84)[3|5|7|8|9][0-9]{8}$/;
+  if (!phoneVal || !phoneRegex.test(phoneVal.replace(/\s+/g, ''))) {
+    if (errPhone) { errPhone.textContent = 'Vui lòng nhập số điện thoại hợp lệ (10 chữ số)'; errPhone.style.display = 'block'; }
+    hasError = true;
+  } else if (errPhone) {
+    errPhone.style.display = 'none';
+  }
+
+  // Validate Address
+  const errAddr = document.getElementById('err-checkout-address');
+  if (!addressVal || addressVal.length < 4) {
+    if (errAddr) { errAddr.textContent = 'Vui lòng nhập số nhà, tên đường hoặc ngõ chi tiết'; errAddr.style.display = 'block'; }
+    hasError = true;
+  } else if (errAddr) {
+    errAddr.style.display = 'none';
+  }
+
+  // Validate Card if payment is card
+  if (selectedPaymentMethod === 'card') {
+    const ccNum = document.getElementById('cc-number')?.value.replace(/\s+/g, '');
+    const ccExp = document.getElementById('cc-exp')?.value;
+    const ccCvv = document.getElementById('cc-cvv')?.value;
+    if (!ccNum || ccNum.length < 15 || !ccExp || !ccCvv) {
+      showToast('Vui lòng điền đầy đủ thông tin thẻ thanh toán');
+      return;
+    }
+  }
+
+  if (hasError) {
+    showToast('Vui lòng kiểm tra lại thông tin người nhận và địa chỉ');
+    return;
+  }
+
+  // Save address if checked
+  if (saveCheckbox && saveCheckbox.checked) {
+    try {
+      const toSave = {
+        name: nameVal,
+        phone: phoneVal,
+        city: cityVal,
+        district: districtVal,
+        address: addressVal,
+        note: noteVal
+      };
+      localStorage.setItem('nova_saved_address', JSON.stringify(toSave));
+    } catch (e) {}
+  }
+
+  const btnSubmit = document.getElementById('btn-place-order');
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `<span>Đang Xử Lý Đơn Hàng... ⏳</span>`;
+  }
+
+  setTimeout(() => {
+    // Generate Order
+    const orderId = 'NOVA-' + Math.floor(100000 + Math.random() * 900000);
+    const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+    const total = Math.max(0, subtotal - checkoutVoucherDiscount);
+    const orderDate = new Date().toLocaleString('vi-VN');
+
+    const paymentMethodTitles = {
+      cod: '💵 Thanh toán khi nhận hàng (COD)',
+      vietqr: '🏦 Chuyển khoản QR Ngân hàng (MB Bank)',
+      momo: '🟣 Ví Điện Tử MoMo',
+      card: '💳 Thẻ Tín Dụng / Quốc Tế (Visa/Master)',
+      vnpay: '⚡ Cổng VNPAY-QR'
+    };
+
+    const newOrder = {
+      id: orderId,
+      date: orderDate,
+      customer: {
+        name: nameVal,
+        phone: phoneVal,
+        fullAddress: `${addressVal}, ${districtVal}, ${cityVal}`,
+        note: noteVal
+      },
+      paymentMethod: paymentMethodTitles[selectedPaymentMethod] || 'COD',
+      items: [...cart],
+      subtotal: subtotal,
+      discount: checkoutVoucherDiscount,
+      total: total,
+      status: 'Đang chuẩn bị hàng'
+    };
+
+    // Store in Order History
+    try {
+      const existing = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+      existing.unshift(newOrder);
+      localStorage.setItem('nova_orders', JSON.stringify(existing));
+    } catch (e) {
+      console.error(e);
+    }
+
+    // Clear Cart
+    cart = [];
+    appliedVoucherDiscount = 0;
+    checkoutVoucherDiscount = 0;
+    updateCartUI();
+
+    // Show Success View
+    const mainContent = document.getElementById('checkout-main-content');
+    const successView = document.getElementById('checkout-success-view');
+
+    if (mainContent) mainContent.style.display = 'none';
+    if (successView) {
+      successView.style.display = 'flex';
+      successView.innerHTML = `
+        <div class="success-icon-wrap">✓</div>
+        <h3 class="success-title">Đặt Hàng Thành Công!</h3>
+        <p class="success-subtitle">Cảm ơn <strong>${nameVal}</strong> đã mua sắm tại Nova Market. Đơn hàng của bạn đã được tiếp nhận và đang được đóng gói chuyển đi!</p>
+
+        <div class="success-order-card">
+          <div class="success-card-row">
+            <span class="success-card-label">Mã đơn hàng:</span>
+            <span class="success-order-id">#${orderId}</span>
+          </div>
+          <div class="success-card-row">
+            <span class="success-card-label">Người nhận hàng:</span>
+            <span class="success-card-val">${nameVal} (${phoneVal})</span>
+          </div>
+          <div class="success-card-row">
+            <span class="success-card-label">Địa chỉ nhận hàng:</span>
+            <span class="success-card-val">${addressVal}, ${districtVal}, ${cityVal}</span>
+          </div>
+          <div class="success-card-row">
+            <span class="success-card-label">Phương thức thanh toán:</span>
+            <span class="success-card-val">${paymentMethodTitles[selectedPaymentMethod]}</span>
+          </div>
+          <div class="success-card-row">
+            <span class="success-card-label">Dự kiến giao hàng:</span>
+            <span class="success-card-val" style="color: #16a34a;">2 - 3 ngày tới (Tiêu chuẩn Nova Express)</span>
+          </div>
+          <div class="success-card-row">
+            <span class="success-card-label">Tổng thanh toán:</span>
+            <span class="success-card-val" style="font-size: 16px; color: #f57224; font-weight: 800;">${formatVND(total)}</span>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <button type="button" class="btn-continue-shop" onclick="closeCheckoutModal()">Tiếp Tục Mua Sắm</button>
+          <button type="button" class="btn-view-order-history" onclick="closeCheckoutModal(); openOrdersModal();">Xem Đơn Hàng Của Tôi</button>
+        </div>
+      `;
+    }
+
+    if (btnSubmit) {
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = `<span>Xác Nhận &amp; Đặt Hàng</span>`;
+    }
+
+    showToast(`🎉 Chúc mừng! Đơn hàng #${orderId} đã được đặt thành công!`);
+  }, 650);
+}
+
+// 6.1 Order History Modal Controls
+function openOrdersModal() {
+  const overlay = document.getElementById('orders-modal-overlay');
+  const modal = document.getElementById('orders-modal');
+  const body = document.getElementById('orders-modal-body');
+  if (!overlay || !modal || !body) return;
+
+  let orders = [];
+  try {
+    orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+  } catch (e) {}
+
+  if (orders.length === 0) {
+    body.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px; color: #64748b;">
+        <span style="font-size: 48px; display: block; margin-bottom: 12px;">📦</span>
+        <h4 style="font-size: 16px; color: #1e293b; margin-bottom: 6px;">Bạn chưa có đơn hàng nào</h4>
+        <p style="font-size: 13px; margin-bottom: 16px;">Hãy khám phá các sản phẩm ưu đãi hấp dẫn trên Nova Market và đặt hàng ngay hôm nay!</p>
+        <button type="button" class="btn-continue-shop" onclick="closeOrdersModal()">Mua Sắm Ngay</button>
+      </div>
+    `;
+  } else {
+    body.innerHTML = orders.map(ord => `
+      <div class="order-history-card">
+        <div class="order-card-top">
+          <div>
+            <span class="order-id-badge">#${ord.id}</span>
+            <div class="order-date-text">Ngày đặt: ${ord.date}</div>
+          </div>
+          <span class="order-status-pill order-status--shipping">${ord.status}</span>
+        </div>
+
+        <div style="font-size: 12px; color: #475569; margin-bottom: 8px;">
+          <strong>Người nhận:</strong> ${ord.customer?.name} - ${ord.customer?.phone} | <strong>Địa chỉ:</strong> ${ord.customer?.fullAddress}
+        </div>
+        <div style="font-size: 11.5px; color: #64748b; margin-bottom: 10px;">
+          <strong>Thanh toán:</strong> ${ord.paymentMethod}
+        </div>
+
+        <div class="order-items-preview">
+          ${(ord.items || []).map(item => `
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
+              <span style="max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                • ${item.title} <strong style="color: #f57224;">x${item.qty}</strong>
+              </span>
+              <span style="font-weight: 600; color: #1e293b;">${formatVND(item.price * item.qty)}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="order-card-bottom">
+          <span style="font-size: 12px; color: #64748b;">Giao hàng tiêu chuẩn: <strong style="color: #16a34a;">MIỄN PHÍ</strong></span>
+          <div>
+            <span style="font-size: 12px; color: #64748b;">Tổng tiền: </span>
+            <span class="order-total-val">${formatVND(ord.total)}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeOrdersModal() {
+  const overlay = document.getElementById('orders-modal-overlay');
+  const modal = document.getElementById('orders-modal');
+  if (overlay) {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  if (modal) modal.setAttribute('aria-hidden', 'true');
 }
 
 // 7. Search & Filter Controls
@@ -1480,6 +2158,8 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleCartDrawer(false);
       closeAuthModal();
       closeProductModal();
+      closeCheckoutModal();
+      closeOrdersModal();
       document.getElementById('search-suggestions')?.classList.remove('active');
     }
   });
