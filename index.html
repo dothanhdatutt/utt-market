@@ -44,8 +44,10 @@
   <div class="top-bar">
     <div class="container top-bar__inner">
       <ul class="top-bar__list" aria-label="Tiện ích người dùng">
-        <li><a href="#seller" class="top-bar__link">Kênh Người Bán Nova</a></li>
-        <li><a href="#become-seller" class="top-bar__link">Trở thành Đối Tác Nova</a></li>
+        <li><a href="#seller" class="top-bar__link" id="top-seller-portal-link" onclick="openSellerRegisterModal(); return false;">Kênh Người Bán Nova</a></li>
+        <li><a href="#become-seller" class="top-bar__link" id="top-become-partner-link" onclick="openSellerRegisterModal(); return false;">Trở thành Đối Tác Nova</a></li>
+        <li><button type="button" class="top-bar__link top-bar__link--upload" id="top-upload-product-btn" onclick="openProductUploadModal(); return false;" style="color: #ea580c; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;"><span>📤 Đăng Bán Sản Phẩm</span></button></li>
+        <li><a href="#seller-partners" class="top-bar__link">Đối Tác Bán Hàng</a></li>
         <li><a href="#app" class="top-bar__link top-bar__link--highlight">Tải Ứng Dụng Nova Market</a></li>
         <li><a href="#care" class="top-bar__link">Chăm Sóc Khách Hàng</a></li>
       </ul>
@@ -101,8 +103,13 @@
         <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Gợi ý tìm kiếm"></div>
       </div>
 
-      <!-- Header Actions: Auth, Nova Mall, Cart -->
+      <!-- Header Actions: Auth, Nova Mall, Upload, Cart -->
       <div class="header__actions">
+        <button type="button" class="header__upload-btn" id="header-upload-btn" onclick="openProductUploadModal()" aria-label="Đăng bán sản phẩm mới">
+          <span class="header__upload-icon">📤</span>
+          <span class="header__upload-text">Đăng Bán</span>
+        </button>
+
         <a href="#novamall" class="header__novamall-link" aria-label="Gian hàng chính hãng Nova Mall">
           <span class="header__novamall-badge">OFFICIAL</span> Nova Mall
         </a>
@@ -127,6 +134,12 @@
                 <span class="header__user-dropdown-label">Xin chào,</span>
                 <strong id="header-dropdown-name">Thành viên</strong>
               </div>
+              <button type="button" class="header__user-dropdown-item" onclick="openProductUploadModal()" role="menuitem" style="width: 100%; text-align: left; padding: 10px 14px; background: none; border: none; font-size: 13px; font-weight: 600; color: #ea580c; cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9;">
+                📤 Đăng Bán Sản Phẩm Mới
+              </button>
+              <button type="button" class="header__user-dropdown-item" onclick="openMyProductsModal()" role="menuitem" style="width: 100%; text-align: left; padding: 10px 14px; background: none; border: none; font-size: 13px; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9;">
+                📋 Sản Phẩm Đã Đăng (<span id="my-products-dropdown-count">0</span>)
+              </button>
               <button type="button" class="header__user-dropdown-item" id="header-orders-btn" onclick="openOrdersModal()" role="menuitem" style="width: 100%; text-align: left; padding: 10px 14px; background: none; border: none; font-size: 13px; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9;">
                 📦 Đơn Hàng Của Tôi
               </button>
@@ -150,6 +163,7 @@
     <div class="container">
       <ul class="category-nav__list">
         <li class="category-nav__item"><a href="#cat-all" class="category-nav__link active" data-category="all">Tất Cả Danh Mục</a></li>
+        <li class="category-nav__item"><a href="#seller-partners" class="category-nav__link" data-category="partners" style="color: var(--color-primitive-orange-soft); font-weight: 600;">🤝 Đối Tác Bán Hàng</a></li>
         <li class="category-nav__item"><a href="#cat-fashion" class="category-nav__link" data-category="fashion">👕 Đồng Phục &amp; Thời Trang</a></li>
         <li class="category-nav__item"><a href="#cat-books" class="category-nav__link" data-category="books">📚 Sách &amp; Giáo Trình UTT</a></li>
         <li class="category-nav__item"><a href="#cat-electronics" class="category-nav__link" data-category="electronics">💻 Thiết Bị Điện Tử &amp; Phụ Kiện</a></li>
@@ -279,6 +293,71 @@
       </div>
     </section>
 
+    <!-- OFFICIAL SELLER & BRAND PARTNERS SECTION -->
+    <section class="partners-section" id="seller-partners" aria-labelledby="partners-title">
+      <div class="partners-section__header">
+        <div class="partners-section__title-wrap">
+          <div class="partners-badge"><span class="badge-icon">✦</span> CHÍNH HÃNG 100%</div>
+          <h2 class="partners-section__title" id="partners-title">
+            🤝 ĐỐI TÁC BÁN HÀNG CHIẾN LƯỢC &amp; THƯƠNG HIỆU UY TÍN
+          </h2>
+          <p class="partners-section__subtitle">
+            Hơn 50+ thương hiệu chính hãng và nhà bán hàng uy tín đã kiểm duyệt, bảo hành chính hãng và hỗ trợ đổi trả nhanh chóng.
+          </p>
+        </div>
+        <div class="partners-section__header-actions">
+          <button type="button" class="btn btn-partner-upload" onclick="openProductUploadModal()" style="background: #081730; color: #ffffff; font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; border: 1px solid #334155; transition: all 0.2s;">
+            <span>📤 Đăng Bán Sản Phẩm</span>
+          </button>
+          <button type="button" class="btn btn-partner-register" onclick="openSellerRegisterModal()">
+            <span>➕ Trở Thành Đối Tác</span>
+          </button>
+          <a href="#product-grid" class="btn btn-partner-viewall" onclick="showAllPartnerProducts(); return false;">
+            <span>Xem Tất Cả Sản Phẩm Đối Tác →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Partner Category Filter Chips -->
+      <div class="partners-filter-tabs" role="tablist" aria-label="Lọc theo ngành hàng đối tác">
+        <button type="button" class="partner-tab active" data-partner-cat="all" onclick="filterPartnerList('all', this)">Tất Cả Đối Tác</button>
+        <button type="button" class="partner-tab" data-partner-cat="home" onclick="filterPartnerList('home', this)">🏠 Gia Dụng &amp; Đời Sống</button>
+        <button type="button" class="partner-tab" data-partner-cat="electronics" onclick="filterPartnerList('electronics', this)">💻 Điện Tử &amp; Phụ Kiện</button>
+        <button type="button" class="partner-tab" data-partner-cat="books" onclick="filterPartnerList('books', this)">📚 Sách &amp; Tri Thức</button>
+        <button type="button" class="partner-tab" data-partner-cat="sports" onclick="filterPartnerList('sports', this)">🏸 Thể Thao &amp; Vợt</button>
+        <button type="button" class="partner-tab" data-partner-cat="fashion" onclick="filterPartnerList('fashion', this)">👕 Đồng Phục &amp; Thời Trang</button>
+      </div>
+
+      <!-- Dynamic Partners Grid Container -->
+      <div class="partners-grid" id="seller-partners-grid" role="region" aria-label="Danh sách đối tác bán hàng">
+        <!-- Rendered dynamically by renderSellerPartners() in app.js -->
+      </div>
+
+      <!-- Recruitment CTA Banner -->
+      <div class="seller-cta-banner">
+        <div class="seller-cta-content">
+          <div class="seller-cta-icon">🚀</div>
+          <div class="seller-cta-text">
+            <h3 class="seller-cta-title">Mở Rộng Kinh Doanh Cùng Nova Market!</h3>
+            <p class="seller-cta-desc">
+              Tham gia cộng đồng người bán &amp; đối tác phân phối hàng đầu. <strong>Hoa hồng 0% trong 3 tháng đầu</strong>, miễn phí tiếp cận hơn 500.000 sinh viên và khách hàng thân thiết.
+            </p>
+            <div class="seller-cta-perks">
+              <span class="perk-tag">✓ Duyệt hồ sơ trong 24h</span>
+              <span class="perk-tag">✓ Hỗ trợ kho vận &amp; giao hàng</span>
+              <span class="perk-tag">✓ Tích hợp thanh toán đa kênh</span>
+              <span class="perk-tag">✓ Hỗ trợ đẩy tin &amp; banner tài trợ</span>
+            </div>
+          </div>
+        </div>
+        <div class="seller-cta-actions">
+          <button type="button" class="btn btn-seller-cta" onclick="openSellerRegisterModal()">
+            Đăng Ký Mở Gian Hàng Ngay ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- FLASH SALE SECTION (Countdown Timer) -->
     <section class="flash-sale" id="flash-sale" aria-labelledby="flash-sale-title">
       <div class="flash-sale__header">
@@ -303,6 +382,8 @@
         <div class="filter-group">
           <span class="filter-label">Bộ lọc nhanh:</span>
           <button class="filter-chip active" data-filter="all">Tất Cả</button>
+          <button class="filter-chip" data-filter="my-products" id="filter-chip-my-products" style="border-color: #ea580c; color: #ea580c; font-weight: 700;">📦 Hàng Tôi Đăng Bán (<span id="filter-my-count">0</span>)</button>
+          <button class="filter-chip" data-filter="partners">🤝 Đối Tác Chính Thức</button>
           <button class="filter-chip" data-filter="mall">Gian Hàng Nova Mall</button>
           <button class="filter-chip" data-filter="discount">Giảm Giá Từ 45%</button>
           <button class="filter-chip" data-filter="rating">⭐ Đánh Giá Cao (≥4.8)</button>
@@ -406,6 +487,15 @@
           <li><a href="#visa">💳 Thẻ Tín Dụng / Ghi Nợ (Visa, Mastercard)</a></li>
           <li><a href="#momo">📱 Ví Điện Tử (MoMo, ZaloPay, VNPay)</a></li>
           <li><a href="#bank">🏦 Chuyển Khoản Ngân Hàng Nội Bộ Nova</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-col__title">Kênh Đối Tác Bán Hàng</h3>
+        <ul class="footer-links">
+          <li><a href="#seller-register" onclick="openSellerRegisterModal(); return false;">Đăng Ký Gian Hàng Đối Tác</a></li>
+          <li><a href="#seller-policy" onclick="openSellerRegisterModal(); return false;">Chính Sách &amp; Hoa Hồng 0%</a></li>
+          <li><a href="#seller-partners">Danh Sách Đối Tác Uy Tín</a></li>
+          <li><a href="#partner-support" onclick="openSellerRegisterModal(); return false;">Hỗ Trợ Người Bán 24/7</a></li>
         </ul>
       </div>
       <div>
@@ -878,7 +968,524 @@
     </div>
   </div>
 
+  <!-- SELLER PARTNER REGISTRATION MODAL (ĐĂNG KÝ TRỞ THÀNH ĐỐI TÁC BÁN HÀNG) -->
+  <div class="partner-modal-overlay" id="seller-register-overlay" aria-hidden="true" onclick="if(event.target===this)closeSellerRegisterModal()">
+    <div class="partner-modal" id="seller-register-modal" role="dialog" aria-modal="true" aria-labelledby="seller-register-title" aria-hidden="true">
+      <div class="partner-modal__header">
+        <div class="partner-modal__header-info">
+          <div class="partner-modal__badge">🚀 NOVA PARTNER PROGRAM</div>
+          <h2 class="partner-modal__title" id="seller-register-title">
+            Đăng Ký Trở Thành Đối Tác Bán Hàng
+          </h2>
+          <p class="partner-modal__desc">
+            Tiếp cận hơn 500.000 khách hàng tiềm năng. Hưởng trọn chính sách <strong>0% hoa hồng sàn 3 tháng đầu</strong>!
+          </p>
+        </div>
+        <button type="button" class="partner-modal__close" onclick="closeSellerRegisterModal()" aria-label="Đóng cửa sổ đăng ký">✕</button>
+      </div>
+
+      <div class="partner-modal__body">
+        <!-- Step Form -->
+        <form id="seller-register-form" onsubmit="handleSellerRegisterSubmit(event)">
+          <div class="seller-steps-indicator">
+            <span class="seller-step active"><span class="step-circle">1</span> Thông tin gian hàng</span>
+            <span class="seller-step-arrow">›</span>
+            <span class="seller-step active"><span class="step-circle">2</span> Người đại diện &amp; Kho</span>
+            <span class="seller-step-arrow">›</span>
+            <span class="seller-step active"><span class="step-circle">3</span> Cam kết chất lượng</span>
+          </div>
+
+          <div class="seller-form-grid">
+            <!-- Row 1: Tên gian hàng & Loại hình -->
+            <div class="seller-form-group">
+              <label for="seller-shop-name" class="seller-label">Tên Gian Hàng / Thương Hiệu <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">🏪</span>
+                <input type="text" id="seller-shop-name" class="seller-input" placeholder="Ví dụ: Anker Official Store, Shop Thời Trang GenZ..." required>
+              </div>
+            </div>
+
+            <div class="seller-form-group">
+              <label for="seller-partner-type" class="seller-label">Mô Hình Kinh Doanh <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">🏢</span>
+                <select id="seller-partner-type" class="seller-select" required>
+                  <option value="official">Thương Hiệu / Nhà Phân Phối Chính Hãng (Mall Partner)</option>
+                  <option value="store">Hộ Kinh Doanh / Đại Lý Bán Lẻ</option>
+                  <option value="student">Sinh Viên / Dự Án Khởi Nghiệp Campus</option>
+                  <option value="individual">Cá Nhân Kinh Doanh Uy Tín</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 2: Ngành hàng & Hotline -->
+            <div class="seller-form-group">
+              <label for="seller-category" class="seller-label">Ngành Hàng Kinh Doanh Chính <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">📦</span>
+                <select id="seller-category" class="seller-select" required>
+                  <option value="electronics">Điện Tử, Âm Thanh &amp; Phụ Kiện</option>
+                  <option value="home">Gia Dụng, Thiết Bị Nhà Bếp &amp; Đời Sống</option>
+                  <option value="fashion">Thời Trang, Giày Dép &amp; Đồng Phục</option>
+                  <option value="books">Sách, Giáo Trình &amp; Văn Phòng Phẩm</option>
+                  <option value="sports">Dụng Cụ Thể Thao &amp; Vợt</option>
+                  <option value="other">Hàng Tiêu Dùng &amp; Ngành Hàng Khác</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="seller-form-group">
+              <label for="seller-contact-phone" class="seller-label">Số Điện Thoại Liên Hệ / Zalo <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">📞</span>
+                <input type="tel" id="seller-contact-phone" class="seller-input" placeholder="Ví dụ: 0987654321" required pattern="[0-9]{10}">
+              </div>
+            </div>
+
+            <!-- Row 3: Người đại diện & Email -->
+            <div class="seller-form-group">
+              <label for="seller-owner-name" class="seller-label">Họ Tên Người Đại Diện Gian Hàng <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">👤</span>
+                <input type="text" id="seller-owner-name" class="seller-input" placeholder="Ví dụ: Trần Quốc Tuấn" required>
+              </div>
+            </div>
+
+            <div class="seller-form-group">
+              <label for="seller-contact-email" class="seller-label">Email Nhận Thông Báo Đơn Hàng <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">✉️</span>
+                <input type="email" id="seller-contact-email" class="seller-input" placeholder="Ví dụ: partner@novamarket.vn" required>
+              </div>
+            </div>
+
+            <!-- Row 4: Địa chỉ kho xuất hàng -->
+            <div class="seller-form-group seller-form-group--full">
+              <label for="seller-warehouse-address" class="seller-label">Địa Chỉ Kho Lấy Hàng / Gửi Hàng <span class="required">*</span></label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">📍</span>
+                <input type="text" id="seller-warehouse-address" class="seller-input" placeholder="Ví dụ: Số 88 Nguyễn Trãi, Thanh Xuân, Hà Nội" required>
+              </div>
+            </div>
+
+            <!-- Row 5: Giới thiệu ngắn & Slogan -->
+            <div class="seller-form-group seller-form-group--full">
+              <label for="seller-bio" class="seller-label">Giới Thiệu Ngắn Về Gian Hàng (Slogan / Điểm nổi bật)</label>
+              <div class="seller-input-wrap">
+                <span class="seller-input-icon">✍️</span>
+                <input type="text" id="seller-bio" class="seller-input" placeholder="Ví dụ: Chuyên cung cấp phụ kiện máy tính chính hãng, bảo hành 1 đổi 1 trong 12 tháng...">
+              </div>
+            </div>
+
+            <!-- Cam kết -->
+            <div class="seller-form-group seller-form-group--full">
+              <label class="seller-checkbox-label">
+                <input type="checkbox" id="seller-agreement" checked required>
+                <span>Tôi cam kết 100% sản phẩm cung cấp là hàng chính hãng, không vi phạm sở hữu trí tuệ và tuân thủ Quy chế hoạt động sàn Thương mại điện tử Nova Market.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="partner-modal__footer">
+            <button type="button" class="btn btn--outline" onclick="closeSellerRegisterModal()">Hủy Bỏ</button>
+            <button type="submit" class="btn btn-submit-partner" id="btn-submit-partner">
+              🚀 Hoàn Tất &amp; Gửi Hồ Sơ Đối Tác
+            </button>
+          </div>
+        </form>
+
+        <!-- Success Result View (hidden by default) -->
+        <div class="seller-register-success" id="seller-register-success" style="display: none;">
+          <div class="success-icon-wrap">🎉</div>
+          <h3 class="success-title">Hồ Sơ Đối Tác Đã Tiếp Nhận Thành Công!</h3>
+          <p class="success-subtitle">
+            Chào mừng bạn đến với mạng lưới Đối Tác Bán Hàng Chiến Lược của Nova Market.
+          </p>
+
+          <div class="partner-code-card">
+            <div class="partner-code-label">MÃ ĐỐI TÁC CHÍNH THỨC (PARTNER ID):</div>
+            <div class="partner-code-value" id="registered-partner-code">NOVA-PARTNER-2026-8899</div>
+            <div class="partner-status-tag">✓ ĐÃ KÍCH HOẠT GIAN HÀNG THỬ NGHIỆM</div>
+          </div>
+
+          <div class="partner-success-tips">
+            <div class="tip-item">⚡ <strong>Hoa hồng 0%:</strong> Áp dụng tự động trong 90 ngày đầu kể từ hôm nay.</div>
+            <div class="tip-item">📦 <strong>Kho vận:</strong> Đơn vị vận chuyển sẽ chủ động liên hệ lấy hàng khi có đơn phát sinh.</div>
+            <div class="tip-item">📞 <strong>Hỗ trợ:</strong> Chuyên viên quản lý ngành hàng sẽ gọi điện chào đón bạn trong vòng 2 giờ làm việc.</div>
+          </div>
+
+          <div class="success-actions">
+            <button type="button" class="btn btn--primary" onclick="finishPartnerRegistration()">
+              Ghé Xem Gian Hàng Của Bạn Trên Trang Chủ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER STORE MODAL (HỒ SƠ & GIAN HÀNG CHI TIẾT CỦA ĐỐI TÁC) -->
+  <div class="partner-modal-overlay" id="partner-store-overlay" aria-hidden="true" onclick="if(event.target===this)closePartnerStoreModal()">
+    <div class="partner-store-modal" id="partner-store-modal" role="dialog" aria-modal="true" aria-labelledby="partner-store-title" aria-hidden="true">
+      <div class="partner-store-header-banner" id="partner-store-banner">
+        <button type="button" class="partner-store-close" onclick="closePartnerStoreModal()" aria-label="Đóng gian hàng">✕</button>
+        <div class="partner-store-profile">
+          <div class="partner-store-avatar-wrap">
+            <img src="./assets/images/nova-logo.jpg" alt="Logo Gian Hàng" class="partner-store-avatar" id="store-modal-logo">
+            <span class="store-badge-check" title="Đối Tác Đã Xác Thực">✓</span>
+          </div>
+          <div class="partner-store-header-info">
+            <div class="store-type-badge" id="store-modal-badge">ĐỐI TÁC CHIẾN LƯỢC</div>
+            <h2 class="partner-store-name" id="partner-store-title">Panasonic Official Store</h2>
+            <p class="partner-store-tagline" id="store-modal-tagline">Gia dụng &amp; Chăm sóc cá nhân Nhật Bản</p>
+            <div class="partner-store-stats-strip">
+              <span class="store-stat"><i class="stat-star">⭐</i> <strong id="store-modal-rating">4.9</strong> / 5.0</span>
+              <span class="store-stat-divider">•</span>
+              <span class="store-stat">📦 Đã bán <strong id="store-modal-sold">45.2k</strong></span>
+              <span class="store-stat-divider">•</span>
+              <span class="store-stat">💬 Phản hồi <strong id="store-modal-response">99%</strong> (<strong id="store-modal-time">&lt; 10 phút</strong>)</span>
+              <span class="store-stat-divider">•</span>
+              <span class="store-stat">👥 Người theo dõi: <strong id="store-modal-followers">68.5k</strong></span>
+            </div>
+          </div>
+          <div class="partner-store-actions">
+            <button type="button" class="btn btn-follow-store" id="btn-follow-store" onclick="toggleStoreFollow()">
+              <span id="follow-store-text">+ Theo Dõi</span>
+            </button>
+            <button type="button" class="btn btn-chat-store" onclick="openStoreChatFromModal()">
+              <span>💬 Nhắn Tin</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Store Voucher Strip -->
+      <div class="store-voucher-strip" id="store-modal-voucher-strip">
+        <div class="store-voucher-box">
+          <div class="voucher-box-left">
+            <span class="voucher-icon">🎟️</span>
+            <div>
+              <div class="voucher-box-title" id="store-voucher-title">Voucher độc quyền đối tác</div>
+              <div class="voucher-box-desc" id="store-voucher-desc">Mã: <strong id="store-voucher-code">PANA10K</strong></div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-collect-store-voucher" id="btn-collect-store-voucher" onclick="collectStoreVoucher()">
+            Lưu Mã
+          </button>
+        </div>
+      </div>
+
+      <!-- Store Tabs Navigation -->
+      <div class="partner-store-tabs">
+        <button type="button" class="store-tab active" id="store-tab-products" onclick="switchStoreTab('products')">
+          Sản Phẩm Của Gian Hàng (<span id="store-products-count">0</span>)
+        </button>
+        <button type="button" class="store-tab" id="store-tab-about" onclick="switchStoreTab('about')">
+          Giới Thiệu &amp; Cam Kết Chất Lượng
+        </button>
+      </div>
+
+      <!-- Tab Content: Products -->
+      <div class="partner-store-tab-content" id="store-content-products">
+        <div class="store-products-grid" id="store-modal-products-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Tab Content: About & Policy -->
+      <div class="partner-store-tab-content" id="store-content-about" style="display: none;">
+        <div class="store-about-card">
+          <h3 class="store-about-heading">Về Gian Hàng Đối Tác</h3>
+          <p id="store-modal-description" class="store-about-text">
+            Thông tin chi tiết về gian hàng và thương hiệu.
+          </p>
+          <div class="store-guarantee-grid">
+            <div class="guarantee-item">
+              <span class="guarantee-icon">🛡️</span>
+              <div>
+                <strong>100% Chính Hãng</strong>
+                <p>Nguồn gốc xuất xứ rõ ràng, kiểm định chất lượng nghiêm ngặt.</p>
+              </div>
+            </div>
+            <div class="guarantee-item">
+              <span class="guarantee-icon">🔄</span>
+              <div>
+                <strong>30 Ngày Đổi Trả</strong>
+                <p>Đổi mới miễn phí nếu có lỗi từ nhà sản xuất trong vòng 30 ngày.</p>
+              </div>
+            </div>
+            <div class="guarantee-item">
+              <span class="guarantee-icon">⚡</span>
+              <div>
+                <strong>Giao Hàng Siêu Tốc</strong>
+                <p>Đóng gói chuẩn quy cách, giao nhanh trong 24h nội thành.</p>
+              </div>
+            </div>
+            <div class="guarantee-item">
+              <span class="guarantee-icon">🔒</span>
+              <div>
+                <strong>Bảo Mật &amp; Hóa Đơn</strong>
+                <p>Xuất hóa đơn VAT điện tử đầy đủ theo yêu cầu của khách hàng.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER MINI CHAT DRAWER (CHAT TRỰC TIẾP VỚI ĐỐI TÁC BÁN HÀNG) -->
+  <div class="partner-chat-widget" id="partner-chat-widget" style="display: none;">
+    <div class="partner-chat-header">
+      <div class="partner-chat-header-info">
+        <span class="chat-online-dot"></span>
+        <div class="chat-header-text">
+          <strong id="chat-partner-name">Đối Tác Bán Hàng</strong>
+          <span class="chat-sub">Đang trực tuyến • Phản hồi trong 5 phút</span>
+        </div>
+      </div>
+      <button type="button" class="chat-close-btn" onclick="closePartnerChat()" aria-label="Đóng chat">✕</button>
+    </div>
+    <div class="partner-chat-body" id="partner-chat-messages">
+      <!-- Chat bubbles -->
+    </div>
+    <form class="partner-chat-footer" onsubmit="handleSendPartnerMessage(event)">
+      <input type="text" id="partner-chat-input" class="partner-chat-input" placeholder="Nhập câu hỏi cho gian hàng..." autocomplete="off">
+      <button type="submit" class="partner-chat-send" aria-label="Gửi tin nhắn">➤</button>
+    </form>
+  </div>
+
+  <!-- PRODUCT UPLOAD / POSTING MODAL (ĐĂNG TẢI SẢN PHẨM BÁN HÀNG) -->
+  <div class="product-upload-overlay" id="product-upload-overlay" aria-hidden="true" onclick="if(event.target===this)closeProductUploadModal()">
+    <div class="product-upload-modal" id="product-upload-modal" role="dialog" aria-modal="true" aria-labelledby="product-upload-title" aria-hidden="true">
+      <div class="product-upload__header">
+        <div class="product-upload__header-info">
+          <div class="product-upload__badge">🚀 KÊNH BÁN HÀNG NOVA MARKET</div>
+          <h2 class="product-upload__title" id="product-upload-title">
+            📤 Đăng Tải &amp; Mở Bán Sản Phẩm Mới
+          </h2>
+          <p class="product-upload__desc">
+            Tiếp cận ngay hơn 500.000 khách hàng tiềm năng. Sản phẩm sẽ hiển thị ngay lập tức trên sàn sau khi đăng!
+          </p>
+        </div>
+        <button type="button" class="product-upload__close" onclick="closeProductUploadModal()" aria-label="Đóng cửa sổ đăng bán">✕</button>
+      </div>
+
+      <div class="product-upload__body">
+        <form id="product-upload-form" onsubmit="handleProductUploadSubmit(event)">
+          <div class="upload-grid-layout">
+            <!-- Left Form Fields -->
+            <div class="upload-form-col">
+              
+              <!-- 1. Product Image Upload -->
+              <div class="upload-section-block">
+                <label class="upload-block-label">
+                  <span>📸 Hình Ảnh Sản Phẩm <strong class="required">*</strong></span>
+                  <span class="upload-label-sub">Tải ảnh từ máy tính hoặc chọn mẫu có sẵn</span>
+                </label>
+                
+                <div class="image-upload-dropzone" id="image-upload-dropzone" onclick="document.getElementById('upload-file-input').click()">
+                  <input type="file" id="upload-file-input" accept="image/*" style="display: none;" onchange="handleProductImageFile(this)">
+                  <div class="dropzone-inner" id="dropzone-placeholder">
+                    <span class="dropzone-icon">📁</span>
+                    <strong style="color: #0f172a; font-size: 13px;">Bấm để tải ảnh lên</strong>
+                    <span style="font-size: 11px; color: #64748b;">Hỗ trợ JPG, PNG, WebP (Tối đa 5MB)</span>
+                  </div>
+                  <div class="dropzone-preview" id="dropzone-preview" style="display: none;">
+                    <img id="upload-preview-img" src="" alt="Xem trước ảnh sản phẩm">
+                    <button type="button" class="btn-change-image" onclick="event.stopPropagation(); document.getElementById('upload-file-input').click()">Đổi ảnh khác</button>
+                  </div>
+                </div>
+
+                <!-- Preset Quick Select Images -->
+                <div class="upload-preset-images">
+                  <span class="preset-title">Hoặc chọn nhanh ảnh mẫu có sẵn:</span>
+                  <div class="preset-chips">
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-headphones.jpg', 'Tai nghe Gaming ANC chống ồn')">🎧 Tai nghe ANC</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-smartwatch.jpg', 'Đồng hồ thông minh Sport Watch')">⌚ Smartwatch</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-may-say-toc-panasonic.jpg', 'Máy sấy tóc ion âm Panasonic')">💨 Máy sấy tóc</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-noi-com-dien-kangaroo.jpg', 'Nồi cơm điện Kangaroo')">🍚 Nồi cơm điện</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-bo-vot-pickleball.jpg', 'Bộ vợt Pickleball carbon')">🏓 Pickleball</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-ao-dong-phuc-mua-he-utt.jpg', 'Áo thun polo thể thao')">👕 Áo polo</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-may-anh-booie-retro.jpg', 'Máy ảnh Retro Y2K Vintage')">📷 Máy ảnh Y2K</button>
+                    <button type="button" class="preset-img-chip" onclick="selectPresetImage('./assets/images/product-tui-laptop.jpg', 'Túi chống sốc laptop 15.6 inch')">💼 Túi laptop</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Product Basic Info -->
+              <div class="upload-section-block">
+                <div class="form-row">
+                  <div class="form-group flex-2">
+                    <label for="upload-title" class="upload-field-label">Tên Sản Phẩm <span class="required">*</span></label>
+                    <input type="text" id="upload-title" class="upload-input" placeholder="Ví dụ: Bàn phím cơ không dây Bluetooth RGB..." required oninput="updateUploadLivePreview()">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="upload-category" class="upload-field-label">Ngành Hàng <span class="required">*</span></label>
+                    <select id="upload-category" class="upload-select" required onchange="updateUploadLivePreview()">
+                      <option value="electronics">💻 Thiết Bị Điện Tử &amp; Phụ Kiện</option>
+                      <option value="home">🏠 Gia Dụng &amp; Đời Sống</option>
+                      <option value="fashion">👕 Thời Trang &amp; Đồng Phục</option>
+                      <option value="books">📚 Sách &amp; Giáo Trình</option>
+                      <option value="sports">🏸 Thể Thao &amp; Dụng Cụ</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label for="upload-seller" class="upload-field-label">Gian Hàng / Đối Tác Đăng Bán <span class="required">*</span></label>
+                    <select id="upload-seller" class="upload-select" onchange="updateUploadLivePreview()">
+                      <!-- Populated dynamically via JS -->
+                    </select>
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="upload-condition" class="upload-field-label">Tình Trạng Hàng Hóa</label>
+                    <select id="upload-condition" class="upload-select" onchange="updateUploadLivePreview()">
+                      <option value="Mới 100% nguyên hộp chính hãng">Mới 100% nguyên hộp chính hãng</option>
+                      <option value="Mới 99% Like New (Chưa qua sử dụng)">Mới 99% Like New (Chưa qua sử dụng)</option>
+                      <option value="Mới 95% nguyên vẹn hoạt động tốt">Mới 95% nguyên vẹn hoạt động tốt</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Pricing & Promotion -->
+              <div class="upload-section-block">
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label for="upload-price" class="upload-field-label">Giá Bán Niêm Yết (₫) <span class="required">*</span></label>
+                    <input type="number" id="upload-price" class="upload-input" placeholder="Ví dụ: 150000" min="1000" step="1000" required oninput="updateUploadLivePreview()">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="upload-old-price" class="upload-field-label">Giá Gốc Trước Giảm (₫)</label>
+                    <input type="number" id="upload-old-price" class="upload-input" placeholder="Ví dụ: 250000" min="1000" step="1000" oninput="updateUploadLivePreview()">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="upload-stock" class="upload-field-label">Số Lượng Trong Kho</label>
+                    <input type="number" id="upload-stock" class="upload-input" value="10" min="1" step="1">
+                  </div>
+                </div>
+
+                <!-- Checkboxes: Mall & Freeship -->
+                <div class="upload-badges-options">
+                  <label class="checkbox-option">
+                    <input type="checkbox" id="upload-is-mall" checked onchange="updateUploadLivePreview()">
+                    <span>🌟 Đăng ký gian hàng <strong>Nova Mall Official</strong></span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input type="checkbox" id="upload-is-freeship" checked onchange="updateUploadLivePreview()">
+                    <span>🚚 Tham gia gói <strong>Freeship MAX toàn quốc</strong></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 4. Description & Specs -->
+              <div class="upload-section-block">
+                <div class="form-group">
+                  <label for="upload-desc" class="upload-field-label">Mô Tả Chi Tiết Sản Phẩm</label>
+                  <textarea id="upload-desc" class="upload-textarea" rows="3" placeholder="Mô tả công dụng, tính năng nổi bật, chất liệu, nguồn gốc và chế độ bảo hành của sản phẩm..."></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label for="upload-brand" class="upload-field-label">Thương Hiệu</label>
+                    <input type="text" id="upload-brand" class="upload-input" placeholder="Ví dụ: Nova Official, Anker, Sony...">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="upload-warranty" class="upload-field-label">Thời Hạn Bảo Hành</label>
+                    <input type="text" id="upload-warranty" class="upload-input" placeholder="Ví dụ: 12 tháng chính hãng, 1 đổi 1 trong 30 ngày">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Live Real-time Card Preview -->
+            <div class="upload-preview-col">
+              <div class="preview-sticky-card">
+                <div class="preview-header">
+                  <span class="preview-badge">👁️ XEM TRƯỚC HIỂN THỊ</span>
+                  <span class="preview-note">Mẫu thẻ sản phẩm trên sàn</span>
+                </div>
+                
+                <div class="preview-product-container">
+                  <article class="product-card" id="upload-live-card" style="box-shadow: 0 4px 14px rgba(0,0,0,0.08); pointer-events: none;">
+                    <div class="product-card__thumb">
+                      <img id="live-card-img" src="./assets/images/product-headphones.jpg" alt="Preview" class="product-card__img">
+                      <span class="badge-tag" id="live-card-mall">Nova Mall</span>
+                      <span class="badge-tag badge-tag--discount" id="live-card-discount">-40%</span>
+                      <span class="badge-tag badge-tag--freeship" id="live-card-freeship">Freeship MAX</span>
+                    </div>
+                    <div class="product-card__body">
+                      <span class="product-card__partner-chip" id="live-card-partner">✓ Đối Tác Chính Hãng</span>
+                      <h3 class="product-card__title" id="live-card-title">Tên sản phẩm của bạn</h3>
+                      <div class="product-card__price-row">
+                        <span class="product-card__price-current" id="live-card-price">₫150.000</span>
+                        <span class="product-card__price-old" id="live-card-old-price">₫250.000</span>
+                      </div>
+                      <div class="product-card__meta">
+                        <span class="product-card__rating">⭐ 5.0</span>
+                        <span class="product-card__sold">Đã bán 0</span>
+                      </div>
+                      <div class="product-card__actions" style="margin-top: 8px;">
+                        <button type="button" class="product-card__btn" style="pointer-events: none;">🛒 Thêm vào giỏ</button>
+                        <button type="button" class="product-card__wishlist" style="pointer-events: none;">🤍 Lưu</button>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="preview-guarantee-note">
+                  ✓ Sản phẩm sau khi đăng sẽ hiển thị trực tiếp tại trang chủ và mục <strong>"📦 Hàng Tôi Đăng Bán"</strong>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-upload__footer">
+            <button type="button" class="btn btn--outline" onclick="closeProductUploadModal()">Hủy Bỏ</button>
+            <button type="submit" class="btn btn-submit-upload" id="btn-submit-upload">
+              🚀 Đăng Tải &amp; Mở Bán Ngay
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MY PUBLISHED PRODUCTS MODAL (QUẢN LÝ SẢN PHẨM ĐÃ ĐĂNG BÁN) -->
+  <div class="product-upload-overlay" id="my-products-overlay" aria-hidden="true" onclick="if(event.target===this)closeMyProductsModal()">
+    <div class="product-upload-modal" id="my-products-modal" role="dialog" aria-modal="true" aria-labelledby="my-products-title" aria-hidden="true" style="max-width: 820px;">
+      <div class="product-upload__header">
+        <div class="product-upload__header-info">
+          <div class="product-upload__badge">📋 KÊNH NGƯỜI BÁN</div>
+          <h2 class="product-upload__title" id="my-products-title">
+            Danh Sách Sản Phẩm Đã Đăng Bán
+          </h2>
+          <p class="product-upload__desc">
+            Quản lý, theo dõi lượt xem và cập nhật kho hàng của các sản phẩm bạn đã đăng bán trên Nova Market.
+          </p>
+        </div>
+        <button type="button" class="product-upload__close" onclick="closeMyProductsModal()" aria-label="Đóng quản lý sản phẩm">✕</button>
+      </div>
+
+      <div class="product-upload__body">
+        <div class="my-products-top-action">
+          <span style="font-size: 13px; color: #475569;">Tổng cộng: <strong id="my-products-total-count" style="color: #ea580c;">0</strong> sản phẩm đang mở bán</span>
+          <button type="button" class="btn btn--primary" style="font-size: 12px; padding: 6px 14px;" onclick="closeMyProductsModal(); openProductUploadModal();">
+            ➕ Đăng Sản Phẩm Mới
+          </button>
+        </div>
+
+        <div class="my-products-container" id="my-products-container">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Application Script -->
-  <script src="./js/app.js?v=13"></script>
+  <script src="./js/app.js?v=15"></script>
 </body>
 </html>
