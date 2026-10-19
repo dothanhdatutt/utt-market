@@ -700,6 +700,231 @@ const PRODUCTS_DATA = [
   }
 ];
 
+// 1.1 Official Seller & Brand Partners Store
+let SELLER_PARTNERS = [
+  {
+    id: 'panasonic',
+    name: 'Panasonic Official Store',
+    tagline: 'Gia dụng & Chăm sóc cá nhân Nhật Bản',
+    badge: 'Đối Tác Chiến Lược',
+    badgeType: 'official',
+    logo: './assets/images/product-may-say-toc-panasonic.jpg',
+    banner: './assets/images/hero-banner-1.jpg',
+    rating: 4.9,
+    reviewsCount: '24.8k',
+    productsCount: 18,
+    soldCount: '45.2k',
+    responseTime: '< 10 phút',
+    responseRate: '99%',
+    voucher: 'Giảm 10% tối đa 50k',
+    voucherCode: 'PANA10K',
+    category: 'home',
+    description: 'Gian hàng chính hãng Panasonic Việt Nam trên sàn Nova Market. Cung cấp máy sấy tóc, nồi chiên, đồ điện gia dụng chất lượng cao theo tiêu chuẩn kiểm định nghiêm ngặt Nhật Bản.',
+    verified: true,
+    joinedYear: '2023',
+    followers: '68.5k'
+  },
+  {
+    id: 'kangaroo',
+    name: 'Kangaroo Official Flagship',
+    tagline: 'Thiết bị gia dụng & Đời sống thông minh',
+    badge: 'Gian Hàng Mall',
+    badgeType: 'flagship',
+    logo: './assets/images/product-noi-com-dien-kangaroo.jpg',
+    banner: './assets/images/hero-banner-2.jpg',
+    rating: 4.9,
+    reviewsCount: '19.2k',
+    productsCount: 26,
+    soldCount: '38.6k',
+    responseTime: '< 15 phút',
+    responseRate: '98%',
+    voucher: 'Giảm 30.000₫ đơn từ 200k',
+    voucherCode: 'KANGAROO30',
+    category: 'home',
+    description: 'Thương hiệu gia dụng hàng đầu Việt Nam. Nồi cơm điện, bộ đồ dùng gia đình, thiết bị nhà bếp bền bỉ, an toàn và tiết kiệm điện năng.',
+    verified: true,
+    joinedYear: '2022',
+    followers: '54.2k'
+  },
+  {
+    id: 'hoco',
+    name: 'Hoco Official Technology',
+    tagline: 'Phụ kiện công nghệ & Tai nghe chính hãng',
+    badge: 'Đối Tác Xác Thực',
+    badgeType: 'official',
+    logo: './assets/images/product-tai-nghe-hoco.jpg',
+    banner: './assets/images/hero-banner-4.jpg',
+    rating: 4.8,
+    reviewsCount: '35.4k',
+    productsCount: 42,
+    soldCount: '89.1k',
+    responseTime: '< 5 phút',
+    responseRate: '100%',
+    voucher: 'Giảm 15.000₫ đơn từ 100k',
+    voucherCode: 'HOCO15K',
+    category: 'electronics',
+    description: 'Thương hiệu phụ kiện số danh tiếng toàn cầu: Tai nghe chụp tai, tai nghe Bluetooth TWS, cáp sạc nhanh, củ sạc đa cổng an toàn.',
+    verified: true,
+    joinedYear: '2021',
+    followers: '92.4k'
+  },
+  {
+    id: 'nhanam',
+    name: 'Nhà Sách Nhã Nam & Tri Thức',
+    tagline: 'Sách bản quyền & Giáo trình học thuật',
+    badge: 'Nhà Phát Hành Uy Tín',
+    badgeType: 'official',
+    logo: './assets/images/product-su-im-lang-cua-bay-cuu.jpg',
+    banner: './assets/images/hero-banner-3.jpg',
+    rating: 5.0,
+    reviewsCount: '48.9k',
+    productsCount: 65,
+    soldCount: '120k',
+    responseTime: '< 8 phút',
+    responseRate: '99%',
+    voucher: 'Freeship đơn từ 99k',
+    voucherCode: 'NHANAMBOOK',
+    category: 'books',
+    description: 'Đối tác phát hành sách văn học kinh điển, tâm lý học tội phạm, sách phát triển bản thân và giáo trình đại học chuẩn màng co seal 100%.',
+    verified: true,
+    joinedYear: '2020',
+    followers: '140k'
+  },
+  {
+    id: 'sports',
+    name: 'LIANBO & Kumpoo Pro Sport',
+    tagline: 'Vợt Pickleball, Cầu Lông & Dụng cụ Thể Thao',
+    badge: 'Đối Tác Thể Thao UTT',
+    badgeType: 'official',
+    logo: './assets/images/product-bo-vot-pickleball.jpg',
+    banner: './assets/images/hero-banner-1.jpg',
+    rating: 5.0,
+    reviewsCount: '16.7k',
+    productsCount: 22,
+    soldCount: '34.2k',
+    responseTime: '< 12 phút',
+    responseRate: '98%',
+    voucher: 'Giảm 25.000₫ vợt thể thao',
+    voucherCode: 'SPORT25K',
+    category: 'sports',
+    description: 'Nhà phân phối chính hãng vợt Pickleball LIANBO đạt chuẩn USA Pickleball và vợt cầu lông Kumpoo đan sẵn cước carbon siêu nảy trợ lực.',
+    verified: true,
+    joinedYear: '2023',
+    followers: '38.1k'
+  },
+  {
+    id: 'utt-store',
+    name: 'UTT Official Student Store',
+    tagline: 'Đồng phục, Giáo trình & Vật phẩm UTT',
+    badge: 'Gian Hàng Nhà Trường',
+    badgeType: 'flagship',
+    logo: './assets/images/product-dong-phuc-the-chat-utt.jpg',
+    banner: './assets/images/hero-banner-3.jpg',
+    rating: 4.9,
+    reviewsCount: '52.3k',
+    productsCount: 38,
+    soldCount: '115k',
+    responseTime: '< 3 phút',
+    responseRate: '100%',
+    voucher: 'Tặng huy hiệu & Freeship Campus',
+    voucherCode: 'UTTSHIP',
+    category: 'fashion',
+    description: 'Kênh cung cấp độc quyền đồng phục sinh viên chính khóa, áo polo thể chất, áo khoác bomber mùa đông và trọn bộ giáo trình cơ sở ngành UTT.',
+    verified: true,
+    joinedYear: '2020',
+    followers: '85.6k'
+  },
+  {
+    id: 'booie',
+    name: 'Booie Retro Korea Digital',
+    tagline: 'Máy ảnh Vintage Y2K & Phụ kiện Nhiếp Ảnh',
+    badge: 'Xu Hướng Giới Trẻ',
+    badgeType: 'official',
+    logo: './assets/images/product-may-anh-booie-retro.jpg',
+    banner: './assets/images/hero-banner-4.jpg',
+    rating: 4.9,
+    reviewsCount: '8.4k',
+    productsCount: 15,
+    soldCount: '14.8k',
+    responseTime: '< 15 phút',
+    responseRate: '97%',
+    voucher: 'Giảm 50.000₫ máy ảnh',
+    voucherCode: 'BOOIE50K',
+    category: 'electronics',
+    description: 'Thương hiệu máy ảnh kỹ thuật số phong cách cổ điển Retro Y2K Korea, màu sắc pastel thanh lịch, tích hợp flash ban đêm và phụ kiện hạt cườm.',
+    verified: true,
+    joinedYear: '2024',
+    followers: '29.3k'
+  },
+  {
+    id: 'phucanh',
+    name: 'Phúc Anh Smart Gear',
+    tagline: 'Balo, Túi chống sốc & Phụ kiện Laptop',
+    badge: 'Phân Phối Chính Hãng',
+    badgeType: 'official',
+    logo: './assets/images/product-tui-laptop.jpg',
+    banner: './assets/images/hero-banner-2.jpg',
+    rating: 4.9,
+    reviewsCount: '21.5k',
+    productsCount: 29,
+    soldCount: '48.3k',
+    responseTime: '< 10 phút',
+    responseRate: '99%',
+    voucher: 'Giảm 20.000₫ phụ kiện',
+    voucherCode: 'PHUCANH20',
+    category: 'electronics',
+    description: 'Chuỗi đối tác cung cấp túi đựng laptop 14 - 15.6 inch chống sốc, bình giữ nhiệt inox 304, ô tự động, phụ kiện văn phòng cho sinh viên.',
+    verified: true,
+    joinedYear: '2022',
+    followers: '43.9k'
+  }
+];
+
+let currentPartnerFilter = null;
+let currentViewingPartner = null;
+
+function loadCustomPartners() {
+  try {
+    const raw = localStorage.getItem('nova_custom_partners');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        parsed.forEach(cp => {
+          if (!SELLER_PARTNERS.some(sp => sp.id === cp.id)) {
+            SELLER_PARTNERS.unshift(cp);
+          }
+        });
+      }
+    }
+  } catch (e) {
+    console.error('Error loading custom partners', e);
+  }
+}
+
+function getProductPartner(product) {
+  if (product.partnerId) {
+    const found = SELLER_PARTNERS.find(sp => sp.id === product.partnerId);
+    if (found) return found;
+  }
+  if (product.isUserUploaded) {
+    return {
+      id: product.partnerId || 'c2c-user',
+      name: product.partnerName || 'Gian Hàng Cá Nhân',
+      badge: 'Người Bán Uy Tín'
+    };
+  }
+  const title = (product.title || '').toLowerCase();
+  if (title.includes('panasonic')) return SELLER_PARTNERS.find(sp => sp.id === 'panasonic');
+  if (title.includes('kangaroo') || title.includes('rổ')) return SELLER_PARTNERS.find(sp => sp.id === 'kangaroo');
+  if (title.includes('hoco') || title.includes('tai nghe')) return SELLER_PARTNERS.find(sp => sp.id === 'hoco');
+  if (title.includes('booie') || title.includes('máy ảnh')) return SELLER_PARTNERS.find(sp => sp.id === 'booie');
+  if (title.includes('utt') || title.includes('đồng phục')) return SELLER_PARTNERS.find(sp => sp.id === 'utt-store');
+  if (title.includes('pickleball') || title.includes('cầu lông') || title.includes('vợt')) return SELLER_PARTNERS.find(sp => sp.id === 'sports');
+  if (title.includes('laptop') || title.includes('bình nước') || title.includes('ô tự động')) return SELLER_PARTNERS.find(sp => sp.id === 'phucanh');
+  if (product.category === 'books') return SELLER_PARTNERS.find(sp => sp.id === 'nhanam');
+  return SELLER_PARTNERS[0];
+}
+
 // 2. Global State Store
 let cart = []; // Start with an empty cart — items are added by the user
 
@@ -725,7 +950,27 @@ function renderProducts(items) {
   // Update product count feedback bar
   const countBar = document.getElementById('product-count-bar');
   if (countBar) {
-    if (items.length === PRODUCTS_DATA.length) {
+    if (currentPartnerFilter) {
+      const partner = SELLER_PARTNERS.find(sp => sp.id === currentPartnerFilter);
+      const partnerName = partner ? partner.name : 'Đối Tác';
+      countBar.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 8px;">
+          <span>Đang hiển thị <strong>${items.length}</strong> sản phẩm từ đối tác chính thức: <strong style="color: #ea580c;">${partnerName}</strong></span>
+          <button type="button" onclick="clearPartnerFilter()" style="background: #fff7ed; border: 1px solid #ea580c; color: #ea580c; border-radius: 4px; padding: 3px 10px; font-size: 11px; font-weight: 700; cursor: pointer;">
+            ✕ Bỏ lọc đối tác
+          </button>
+        </div>
+      `;
+    } else if (currentFilter === 'my-products') {
+      countBar.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 8px;">
+          <span>📦 Đang hiển thị <strong>${items.length}</strong> sản phẩm do bạn đăng bán</span>
+          <button type="button" onclick="openProductUploadModal()" style="background: #ea580c; border: none; color: #ffffff; border-radius: 4px; padding: 4px 12px; font-size: 11.5px; font-weight: 700; cursor: pointer;">
+            + Đăng Thêm Sản Phẩm
+          </button>
+        </div>
+      `;
+    } else if (items.length === PRODUCTS_DATA.length) {
       countBar.textContent = `Hiển thị tất cả ${items.length} sản phẩm`;
     } else {
       countBar.textContent = `Tìm thấy ${items.length} / ${PRODUCTS_DATA.length} sản phẩm phù hợp`;
@@ -746,6 +991,7 @@ function renderProducts(items) {
 
   grid.innerHTML = items.map(product => {
     const isSaved = savedWishlist.has(product.id);
+    const partner = getProductPartner(product);
     const stateClass = currentComponentState !== 'default' ? ` product-card--${currentComponentState}` : '';
     return `
       <article class="product-card${stateClass}" id="product-${product.id}" tabindex="0" aria-label="${product.title}, ${formatVND(product.price)}" onclick="openProductModal(${product.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductModal(${product.id});}">
@@ -756,6 +1002,7 @@ function renderProducts(items) {
           ${product.freeship ? '<span class="badge-tag badge-tag--freeship">Freeship MAX</span>' : ''}
         </div>
         <div class="product-card__body">
+          ${partner ? `<span class="product-card__partner-chip" title="Cung cấp bởi đối tác chính thức ${partner.name}">✓ ${partner.name.split(' ')[0]} Official</span>` : ''}
           <h3 class="product-card__title" title="${product.title}">${product.title}</h3>
           <div class="product-card__price-row">
             <span class="product-card__price-current">${formatVND(product.price)}</span>
@@ -848,6 +1095,29 @@ function openProductModal(productId) {
         <span class="product-modal__price-current">${formatVND(product.price)}</span>
         <span class="product-modal__price-old">${formatVND(product.oldPrice)}</span>
         <span class="product-modal__discount-tag">${product.discount}</span>
+      </div>
+
+      <!-- Seller Partner Box in Product Modal -->
+      <div class="product-modal__partner-box">
+        <div class="product-modal__partner-info">
+          <img src="${getProductPartner(product).logo}" alt="${getProductPartner(product).name}" class="product-modal__partner-logo">
+          <div>
+            <div class="product-modal__partner-name">
+              ${getProductPartner(product).name} <span style="color: #0284c7; font-size: 13px;">✓</span>
+            </div>
+            <div class="product-modal__partner-meta">
+              ⭐ ${getProductPartner(product).rating} / 5.0 • Đã bán ${getProductPartner(product).soldCount} • Phản hồi ${getProductPartner(product).responseRate}
+            </div>
+          </div>
+        </div>
+        <div class="product-modal__partner-actions">
+          <button type="button" class="btn-partner-box-visit" onclick="closeProductModal(); openPartnerStoreModal('${getProductPartner(product).id}')">
+            🏪 Ghé Gian Hàng
+          </button>
+          <button type="button" class="btn-partner-box-chat" onclick="openPartnerChat('${getProductPartner(product).id}', '${getProductPartner(product).name}')">
+            💬 Chat Shop
+          </button>
+        </div>
       </div>
 
       <div>
@@ -1873,8 +2143,14 @@ function confirmCancelOrder() {
 function filterProducts() {
   let filtered = [...PRODUCTS_DATA];
 
-  // Category filter
-  if (currentFilter === 'mall') {
+  // Specific partner filter
+  if (currentPartnerFilter) {
+    filtered = filtered.filter(p => getProductPartner(p).id === currentPartnerFilter);
+  } else if (currentFilter === 'partners') {
+    filtered = filtered.filter(p => getProductPartner(p));
+  } else if (currentFilter === 'my-products') {
+    filtered = filtered.filter(p => p.isUserUploaded === true);
+  } else if (currentFilter === 'mall') {
     filtered = filtered.filter(p => p.isMall);
   } else if (currentFilter === 'discount') {
     filtered = filtered.filter(p => parseInt(p.discount.replace(/[^0-9]/g, '')) >= 45);
@@ -1903,6 +2179,7 @@ function filterProducts() {
 
 function resetFilters() {
   currentFilter = 'all';
+  currentPartnerFilter = null;
   currentSearchQuery = '';
   minPriceFilter = null;
   maxPriceFilter = null;
@@ -2546,9 +2823,882 @@ function initHeroSlider() {
   startAutoSlide();
 }
 
+// ==========================================================================
+// 14. Official Seller & Brand Partners Controller
+// ==========================================================================
+
+function renderSellerPartners(categoryFilter = 'all') {
+  const grid = document.getElementById('seller-partners-grid');
+  if (!grid) return;
+
+  let partners = [...SELLER_PARTNERS];
+  if (categoryFilter !== 'all') {
+    partners = partners.filter(p => p.category === categoryFilter);
+  }
+
+  if (partners.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 32px 16px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+        <p style="font-weight: 700; color: #1e293b;">Chưa có đối tác cho ngành hàng này</p>
+        <button type="button" class="btn btn--outline" onclick="filterPartnerList('all')" style="margin-top: 8px; font-size: 12px; padding: 4px 12px;">Xem tất cả đối tác</button>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = partners.map(partner => `
+    <article class="partner-card" id="partner-card-${partner.id}">
+      <img src="${partner.banner}" alt="${partner.name} Cover" class="partner-card__cover" loading="lazy">
+      <div class="partner-card__profile">
+        <div class="partner-card__avatar-wrap">
+          <img src="${partner.logo}" alt="${partner.name} Logo" class="partner-card__avatar" loading="lazy">
+          <span class="partner-card__verified-badge" title="Đã xác thực chính hãng">✓</span>
+        </div>
+        <span class="partner-card__type-tag ${partner.badgeType === 'official' ? 'tag--official' : 'tag--flagship'}">
+          ${partner.badge}
+        </span>
+      </div>
+      <div class="partner-card__body">
+        <h3 class="partner-card__name">
+          <span>${partner.name}</span>
+          <span class="check-icon" title="Đối tác ủy quyền">✓</span>
+        </h3>
+        <p class="partner-card__tagline">${partner.tagline}</p>
+        
+        <div class="partner-card__stats">
+          <div class="partner-card__stat-item">
+            <span>⭐</span> <strong>${partner.rating}</strong>
+          </div>
+          <div class="partner-card__stat-item">
+            <span>📦</span> <strong>${partner.soldCount}</strong> đã bán
+          </div>
+          <div class="partner-card__stat-item">
+            <span>💬</span> <strong>${partner.responseRate}</strong>
+          </div>
+        </div>
+
+        <div class="partner-card__voucher">
+          <span>🎟️ ${partner.voucher}</span>
+          <span class="partner-card__voucher-code">${partner.voucherCode}</span>
+        </div>
+
+        <div class="partner-card__actions">
+          <button type="button" class="btn-card-visit" onclick="openPartnerStoreModal('${partner.id}')">
+            🏪 Ghé Shop
+          </button>
+          <button type="button" class="btn-card-products" onclick="filterByPartner('${partner.id}')">
+            🔍 Xem Sản Phẩm
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function filterPartnerList(cat, btn) {
+  document.querySelectorAll('.partner-tab').forEach(tab => {
+    tab.classList.toggle('active', tab === btn || (btn && tab.dataset.partnerCat === cat));
+  });
+  renderSellerPartners(cat);
+}
+
+function filterByPartner(partnerId) {
+  currentPartnerFilter = partnerId;
+  const partner = SELLER_PARTNERS.find(p => p.id === partnerId);
+  const partnerName = partner ? partner.name : 'Đối Tác';
+
+  filterProducts();
+  document.getElementById('product-grid')?.scrollIntoView({ behavior: 'smooth' });
+  showToast(`🔍 Đang hiển thị sản phẩm của đối tác: "${partnerName}"`);
+}
+
+function clearPartnerFilter() {
+  currentPartnerFilter = null;
+  filterProducts();
+  showToast('Đã xóa bộ lọc đối tác');
+}
+
+function showAllPartnerProducts() {
+  currentFilter = 'partners';
+  currentPartnerFilter = null;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  document.querySelector('.filter-chip[data-filter="partners"]')?.classList.add('active');
+
+  filterProducts();
+  document.getElementById('product-grid')?.scrollIntoView({ behavior: 'smooth' });
+  showToast('Đang hiển thị toàn bộ sản phẩm từ các Đối Tác Bán Hàng');
+}
+
+// Partner Store Modal Details
+function openPartnerStoreModal(partnerId) {
+  const partner = SELLER_PARTNERS.find(p => p.id === partnerId);
+  if (!partner) return;
+
+  currentViewingPartner = partner;
+  const modal = document.getElementById('partner-store-modal');
+  const overlay = document.getElementById('partner-store-overlay');
+  if (!modal || !overlay) return;
+
+  // Set store profile data
+  const logoEl = document.getElementById('store-modal-logo');
+  const titleEl = document.getElementById('partner-store-title');
+  const taglineEl = document.getElementById('store-modal-tagline');
+  const badgeEl = document.getElementById('store-modal-badge');
+  const ratingEl = document.getElementById('store-modal-rating');
+  const soldEl = document.getElementById('store-modal-sold');
+  const responseEl = document.getElementById('store-modal-response');
+  const timeEl = document.getElementById('store-modal-time');
+  const followersEl = document.getElementById('store-modal-followers');
+  const descEl = document.getElementById('store-modal-description');
+  const bannerEl = document.getElementById('partner-store-banner');
+
+  if (logoEl) logoEl.src = partner.logo;
+  if (titleEl) titleEl.textContent = partner.name;
+  if (taglineEl) taglineEl.textContent = partner.tagline;
+  if (badgeEl) badgeEl.textContent = partner.badge.toUpperCase();
+  if (ratingEl) ratingEl.textContent = partner.rating;
+  if (soldEl) soldEl.textContent = partner.soldCount;
+  if (responseEl) responseEl.textContent = partner.responseRate;
+  if (timeEl) timeEl.textContent = partner.responseTime;
+  if (followersEl) followersEl.textContent = partner.followers;
+  if (descEl) descEl.textContent = partner.description;
+
+  // Update Voucher
+  const vTitle = document.getElementById('store-voucher-title');
+  const vDesc = document.getElementById('store-voucher-desc');
+  const vCode = document.getElementById('store-voucher-code');
+  const vBtn = document.getElementById('btn-collect-store-voucher');
+  if (vTitle) vTitle.textContent = partner.voucher;
+  if (vCode) vCode.textContent = partner.voucherCode;
+  if (vBtn) {
+    vBtn.textContent = 'Lưu Mã';
+    vBtn.classList.remove('collected');
+  }
+
+  // Check follow status
+  updateStoreFollowBtn(partner.id);
+
+  // Render products for this partner
+  const productsGrid = document.getElementById('store-modal-products-grid');
+  const countEl = document.getElementById('store-products-count');
+  const partnerProducts = PRODUCTS_DATA.filter(p => getProductPartner(p).id === partner.id);
+
+  if (countEl) countEl.textContent = partnerProducts.length;
+
+  if (productsGrid) {
+    if (partnerProducts.length === 0) {
+      productsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 32px 16px; color: #64748b;">
+          Gian hàng đang cập nhật thêm sản phẩm. Vui lòng quay lại sau!
+        </div>
+      `;
+    } else {
+      productsGrid.innerHTML = partnerProducts.map(p => `
+        <div class="product-card" style="box-shadow: none; border: 1px solid #e2e8f0;">
+          <div class="product-card__thumb" style="height: 150px;">
+            <img src="${p.image}" alt="${p.title}" class="product-card__img">
+            <span class="badge-tag badge-tag--discount">${p.discount}</span>
+          </div>
+          <div class="product-card__body" style="padding: 10px;">
+            <h4 class="product-card__title" style="font-size: 13px;">${p.title}</h4>
+            <div class="product-card__price-row">
+              <span class="product-card__price-current">${formatVND(p.price)}</span>
+              <span class="product-card__price-old">${formatVND(p.oldPrice)}</span>
+            </div>
+            <div style="display: flex; gap: 6px; margin-top: 8px;">
+              <button class="btn btn--primary" style="flex: 1; padding: 6px 8px; font-size: 11px;" onclick="closePartnerStoreModal(); addToCart(${p.id})">
+                🛒 Thêm Giỏ
+              </button>
+              <button class="btn btn--outline" style="padding: 6px 8px; font-size: 11px;" onclick="closePartnerStoreModal(); openProductModal(${p.id})">
+                Chi Tiết
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // Switch to products tab
+  switchStoreTab('products');
+
+  modal.classList.add('active');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closePartnerStoreModal() {
+  const modal = document.getElementById('partner-store-modal');
+  const overlay = document.getElementById('partner-store-overlay');
+  if (modal) modal.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function switchStoreTab(tab) {
+  const tabProd = document.getElementById('store-tab-products');
+  const tabAbout = document.getElementById('store-tab-about');
+  const contentProd = document.getElementById('store-content-products');
+  const contentAbout = document.getElementById('store-content-about');
+
+  if (tab === 'products') {
+    if (tabProd) tabProd.classList.add('active');
+    if (tabAbout) tabAbout.classList.remove('active');
+    if (contentProd) contentProd.style.display = 'block';
+    if (contentAbout) contentAbout.style.display = 'none';
+  } else {
+    if (tabProd) tabProd.classList.remove('active');
+    if (tabAbout) tabAbout.classList.add('active');
+    if (contentProd) contentProd.style.display = 'none';
+    if (contentAbout) contentAbout.style.display = 'block';
+  }
+}
+
+function updateStoreFollowBtn(partnerId) {
+  const btn = document.getElementById('btn-follow-store');
+  const textEl = document.getElementById('follow-store-text');
+  if (!btn || !textEl) return;
+
+  try {
+    const raw = localStorage.getItem('nova_followed_stores');
+    const followed = raw ? JSON.parse(raw) : [];
+    const isFollowing = followed.includes(partnerId);
+
+    if (isFollowing) {
+      btn.classList.add('following');
+      textEl.textContent = '✓ Đang Theo Dõi';
+    } else {
+      btn.classList.remove('following');
+      textEl.textContent = '+ Theo Dõi';
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function toggleStoreFollow() {
+  if (!currentViewingPartner) return;
+  const partnerId = currentViewingPartner.id;
+
+  try {
+    const raw = localStorage.getItem('nova_followed_stores');
+    let followed = raw ? JSON.parse(raw) : [];
+
+    if (followed.includes(partnerId)) {
+      followed = followed.filter(id => id !== partnerId);
+      showToast(`Đã bỏ theo dõi gian hàng "${currentViewingPartner.name}"`);
+    } else {
+      followed.push(partnerId);
+      showToast(`❤️ Đã theo dõi gian hàng "${currentViewingPartner.name}". Bạn sẽ nhận được voucher mới sớm nhất!`);
+    }
+
+    localStorage.setItem('nova_followed_stores', JSON.stringify(followed));
+    updateStoreFollowBtn(partnerId);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function collectStoreVoucher() {
+  appliedVoucherDiscount = 30000;
+  updateCartUI();
+  const btn = document.getElementById('btn-collect-store-voucher');
+  if (btn) {
+    btn.textContent = '✓ Đã Lưu Mã';
+    btn.classList.add('collected');
+  }
+  showToast(`🎟️ Đã lưu mã voucher của "${currentViewingPartner ? currentViewingPartner.name : 'gian hàng'}". Giảm ngay 30.000₫ khi thanh toán!`);
+}
+
+// Partner Registration Modal
+function openSellerRegisterModal() {
+  const modal = document.getElementById('seller-register-modal');
+  const overlay = document.getElementById('seller-register-overlay');
+  const form = document.getElementById('seller-register-form');
+  const success = document.getElementById('seller-register-success');
+  if (!modal || !overlay) return;
+
+  if (form) form.style.display = 'block';
+  if (success) success.style.display = 'none';
+
+  modal.classList.add('active');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+
+  document.getElementById('seller-shop-name')?.focus();
+}
+
+function closeSellerRegisterModal() {
+  const modal = document.getElementById('seller-register-modal');
+  const overlay = document.getElementById('seller-register-overlay');
+  if (modal) modal.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function handleSellerRegisterSubmit(event) {
+  event.preventDefault();
+
+  const shopName = document.getElementById('seller-shop-name')?.value.trim();
+  const partnerType = document.getElementById('seller-partner-type')?.value;
+  const category = document.getElementById('seller-category')?.value;
+  const phone = document.getElementById('seller-contact-phone')?.value.trim();
+  const owner = document.getElementById('seller-owner-name')?.value.trim();
+  const email = document.getElementById('seller-contact-email')?.value.trim();
+  const address = document.getElementById('seller-warehouse-address')?.value.trim();
+  const bio = document.getElementById('seller-bio')?.value.trim();
+
+  if (!shopName || !phone || !owner || !email || !address) {
+    showToast('⚠️ Vui lòng điền đầy đủ các trường thông tin bắt buộc');
+    return;
+  }
+
+  // Generate Partner Code
+  const partnerCode = 'NOVA-PARTNER-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+  const newPartner = {
+    id: 'custom-' + Date.now(),
+    name: shopName,
+    tagline: bio || 'Đối Tác Bán Hàng Mới Tại Nova Market',
+    badge: partnerType === 'official' ? 'Thương Hiệu Mới' : 'Đối Tác Xác Thực',
+    badgeType: partnerType === 'official' ? 'official' : 'flagship',
+    logo: './assets/images/nova-logo.jpg',
+    banner: './assets/images/hero-banner-1.jpg',
+    rating: 5.0,
+    reviewsCount: 'Mới',
+    productsCount: 0,
+    soldCount: '0',
+    responseTime: '< 5 phút',
+    responseRate: '100%',
+    voucher: 'Ưu đãi mở gian hàng giảm 20k',
+    voucherCode: 'NEWSHOP20',
+    category: category,
+    description: `Gian hàng đối tác của ${owner} tại ${address}. Liên hệ: ${phone} - ${email}. ${bio}`,
+    verified: true,
+    joinedYear: '2026',
+    followers: '1'
+  };
+
+  try {
+    const raw = localStorage.getItem('nova_custom_partners');
+    const existing = raw ? JSON.parse(raw) : [];
+    existing.unshift(newPartner);
+    localStorage.setItem('nova_custom_partners', JSON.stringify(existing));
+  } catch (e) {
+    console.error(e);
+  }
+
+  SELLER_PARTNERS.unshift(newPartner);
+
+  // Show Success View
+  const form = document.getElementById('seller-register-form');
+  const success = document.getElementById('seller-register-success');
+  const codeEl = document.getElementById('registered-partner-code');
+
+  if (form) form.style.display = 'none';
+  if (success) success.style.display = 'block';
+  if (codeEl) codeEl.textContent = partnerCode;
+
+  renderSellerPartners('all');
+  showToast('🎉 Chúc mừng bạn đã đăng ký trở thành Đối Tác Bán Hàng Nova Market thành công!');
+}
+
+function finishPartnerRegistration() {
+  closeSellerRegisterModal();
+  document.getElementById('seller-partners')?.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Partner Mini Chat Drawer
+let currentChatPartner = null;
+
+function openPartnerChat(partnerId, partnerName) {
+  currentChatPartner = { id: partnerId, name: partnerName };
+  const widget = document.getElementById('partner-chat-widget');
+  const nameEl = document.getElementById('chat-partner-name');
+  const msgContainer = document.getElementById('partner-chat-messages');
+
+  if (nameEl) nameEl.textContent = partnerName;
+
+  if (msgContainer) {
+    const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    msgContainer.innerHTML = `
+      <div class="chat-msg chat-msg--partner">
+        Xin chào bạn! Cảm ơn bạn đã quan tâm đến gian hàng <strong>${partnerName}</strong>. Shop có thể hỗ trợ tư vấn chi tiết gì cho bạn về sản phẩm, kích thước hoặc chế độ bảo hành?
+        <div class="chat-msg-time">${now}</div>
+      </div>
+    `;
+  }
+
+  if (widget) widget.style.display = 'flex';
+  document.getElementById('partner-chat-input')?.focus();
+}
+
+function openStoreChatFromModal() {
+  if (currentViewingPartner) {
+    closePartnerStoreModal();
+    openPartnerChat(currentViewingPartner.id, currentViewingPartner.name);
+  }
+}
+
+function closePartnerChat() {
+  const widget = document.getElementById('partner-chat-widget');
+  if (widget) widget.style.display = 'none';
+}
+
+function handleSendPartnerMessage(event) {
+  event.preventDefault();
+  const input = document.getElementById('partner-chat-input');
+  const msgContainer = document.getElementById('partner-chat-messages');
+  if (!input || !msgContainer) return;
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+
+  // Append user message
+  const userMsgEl = document.createElement('div');
+  userMsgEl.className = 'chat-msg chat-msg--user';
+  userMsgEl.innerHTML = `
+    ${text}
+    <div class="chat-msg-time">${now}</div>
+  `;
+  msgContainer.appendChild(userMsgEl);
+  input.value = '';
+  msgContainer.scrollTop = msgContainer.scrollHeight;
+
+  // Simulate seller auto-reply
+  setTimeout(() => {
+    const partnerName = currentChatPartner ? currentChatPartner.name : 'Gian Hàng';
+    const replyNow = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    const replyEl = document.createElement('div');
+    replyEl.className = 'chat-msg chat-msg--partner';
+
+    const replies = [
+      `Dạ chào bạn, ${partnerName} đã nhận được câu hỏi "${text}". Gian hàng đang kiểm tra tình trạng hàng và sẽ phản hồi chi tiết ngay cho bạn nhé! Bạn có thể thêm sản phẩm vào giỏ trước để nhận ưu đãi voucher nha.`,
+      `Cảm ơn bạn đã nhắn tin cho ${partnerName}! Sản phẩm bên mình cam kết 100% chính hãng, có sẵn tại kho và hỗ trợ đổi trả trong 30 ngày. Shop luôn sẵn sàng phục vụ bạn!`,
+      `Chào bạn, chuyên viên hỗ trợ của ${partnerName} đã nhận thông tin. Đơn hàng đặt hôm nay sẽ được đóng gói chuẩn quy cách và bàn giao cho bưu tá giao nhanh trong ngày nhé!`
+    ];
+    const randomReply = replies[Math.floor(Math.random() * replies.length)];
+
+    replyEl.innerHTML = `
+      ${randomReply}
+      <div class="chat-msg-time">${replyNow}</div>
+    `;
+    msgContainer.appendChild(replyEl);
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+  }, 750);
+}
+
+// 12.5 Product Uploading & Seller Listings Management
+let myUploadedProducts = [];
+let currentUploadedImageData = './assets/images/product-headphones.jpg';
+
+function loadCustomProducts() {
+  try {
+    const raw = localStorage.getItem('nova_custom_products');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        myUploadedProducts = parsed;
+        // Unshift custom products into PRODUCTS_DATA so they appear prominently at the top
+        parsed.slice().reverse().forEach(cp => {
+          if (!PRODUCTS_DATA.some(p => p.id === cp.id)) {
+            PRODUCTS_DATA.unshift(cp);
+          }
+        });
+      }
+    }
+  } catch (e) {
+    console.error('Error loading custom products', e);
+  }
+  updateMyProductsCountBadges();
+}
+
+function saveCustomProducts() {
+  try {
+    localStorage.setItem('nova_custom_products', JSON.stringify(myUploadedProducts));
+  } catch (e) {
+    console.error('Error saving custom products', e);
+  }
+  updateMyProductsCountBadges();
+}
+
+function updateMyProductsCountBadges() {
+  const count = myUploadedProducts.length;
+  const filterCount = document.getElementById('filter-my-count');
+  const dropdownCount = document.getElementById('my-products-dropdown-count');
+  const totalCount = document.getElementById('my-products-total-count');
+
+  if (filterCount) filterCount.textContent = count;
+  if (dropdownCount) dropdownCount.textContent = count;
+  if (totalCount) totalCount.textContent = count;
+}
+
+function openProductUploadModal() {
+  const modal = document.getElementById('product-upload-modal');
+  const overlay = document.getElementById('product-upload-overlay');
+  if (!modal || !overlay) return;
+
+  // Populate #upload-seller select dynamically
+  const sellerSelect = document.getElementById('upload-seller');
+  if (sellerSelect) {
+    sellerSelect.innerHTML = '';
+
+    const optPersonal = document.createElement('option');
+    optPersonal.value = 'nova-seller-c2c';
+    optPersonal.textContent = '👤 Cá Nhân Tôi (Nova Verified Seller)';
+    sellerSelect.appendChild(optPersonal);
+
+    // If user registered a custom partner store, offer it as primary option
+    try {
+      const rawPartners = localStorage.getItem('nova_custom_partners');
+      if (rawPartners) {
+        const customPartners = JSON.parse(rawPartners);
+        customPartners.forEach(cp => {
+          const opt = document.createElement('option');
+          opt.value = cp.id;
+          opt.textContent = `⭐ Gian Hàng Của Tôi: ${cp.name}`;
+          sellerSelect.appendChild(opt);
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    // Add other official partners
+    SELLER_PARTNERS.forEach(p => {
+      if (!p.id.startsWith('custom-')) {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `🏪 Đối Tác: ${p.name}`;
+        sellerSelect.appendChild(opt);
+      }
+    });
+  }
+
+  // Set initial sample preview if input is empty
+  const titleInput = document.getElementById('upload-title');
+  if (titleInput && (!titleInput.value || titleInput.value.trim() === '')) {
+    document.getElementById('upload-price').value = 189000;
+    document.getElementById('upload-old-price').value = 299000;
+    document.getElementById('upload-stock').value = 20;
+    selectPresetImage('./assets/images/product-headphones.jpg', 'Tai nghe Gaming ANC chống ồn');
+  } else {
+    updateUploadLivePreview();
+  }
+
+  modal.classList.add('active');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+
+  setTimeout(() => {
+    document.getElementById('upload-title')?.focus();
+  }, 100);
+}
+
+function closeProductUploadModal() {
+  const modal = document.getElementById('product-upload-modal');
+  const overlay = document.getElementById('product-upload-overlay');
+  if (modal) modal.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function handleProductImageFile(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('⚠️ Dung lượng ảnh vượt quá 5MB. Vui lòng chọn ảnh nhẹ hơn.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    currentUploadedImageData = e.target.result;
+    const previewImg = document.getElementById('upload-preview-img');
+    const placeholder = document.getElementById('dropzone-placeholder');
+    const previewContainer = document.getElementById('dropzone-preview');
+
+    if (previewImg) previewImg.src = currentUploadedImageData;
+    if (placeholder) placeholder.style.display = 'none';
+    if (previewContainer) previewContainer.style.display = 'block';
+
+    updateUploadLivePreview();
+    showToast('📸 Đã tải ảnh lên thành công!');
+  };
+  reader.readAsDataURL(file);
+}
+
+function selectPresetImage(imageUrl, defaultTitle) {
+  currentUploadedImageData = imageUrl;
+
+  const previewImg = document.getElementById('upload-preview-img');
+  const placeholder = document.getElementById('dropzone-placeholder');
+  const previewContainer = document.getElementById('dropzone-preview');
+
+  if (previewImg) previewImg.src = currentUploadedImageData;
+  if (placeholder) placeholder.style.display = 'none';
+  if (previewContainer) previewContainer.style.display = 'block';
+
+  const titleInput = document.getElementById('upload-title');
+  if (titleInput && (!titleInput.value || titleInput.value.trim() === '')) {
+    titleInput.value = defaultTitle;
+  }
+
+  updateUploadLivePreview();
+}
+
+function updateUploadLivePreview() {
+  const title = document.getElementById('upload-title')?.value.trim() || 'Tên sản phẩm của bạn';
+  const priceVal = parseFloat(document.getElementById('upload-price')?.value) || 0;
+  const oldPriceVal = parseFloat(document.getElementById('upload-old-price')?.value) || 0;
+  const isMall = document.getElementById('upload-is-mall')?.checked;
+  const isFreeship = document.getElementById('upload-is-freeship')?.checked;
+
+  const sellerSelect = document.getElementById('upload-seller');
+  let sellerText = '✓ Đối Tác Chính Hãng';
+  if (sellerSelect && sellerSelect.selectedIndex >= 0) {
+    const selectedOptionText = sellerSelect.options[sellerSelect.selectedIndex].text;
+    sellerText = selectedOptionText.replace(/^[^\w\s\u00C0-\u1EF9]+/, '').trim();
+    if (!sellerText.startsWith('✓')) sellerText = '✓ ' + sellerText;
+  }
+
+  // Update real-time sticky preview card
+  const cardImg = document.getElementById('live-card-img');
+  const cardMall = document.getElementById('live-card-mall');
+  const cardDiscount = document.getElementById('live-card-discount');
+  const cardFreeship = document.getElementById('live-card-freeship');
+  const cardPartner = document.getElementById('live-card-partner');
+  const cardTitle = document.getElementById('live-card-title');
+  const cardPrice = document.getElementById('live-card-price');
+  const cardOldPrice = document.getElementById('live-card-old-price');
+
+  if (cardImg) cardImg.src = currentUploadedImageData;
+  if (cardMall) cardMall.style.display = isMall ? 'inline-block' : 'none';
+  if (cardFreeship) cardFreeship.style.display = isFreeship ? 'inline-block' : 'none';
+  if (cardPartner) cardPartner.textContent = sellerText;
+  if (cardTitle) cardTitle.textContent = title;
+  if (cardPrice) cardPrice.textContent = formatVND(priceVal);
+
+  if (oldPriceVal > priceVal && priceVal > 0) {
+    const pct = Math.round((1 - priceVal / oldPriceVal) * 100);
+    if (cardDiscount) {
+      cardDiscount.style.display = 'inline-block';
+      cardDiscount.textContent = `-${pct}%`;
+    }
+    if (cardOldPrice) {
+      cardOldPrice.style.display = 'inline-block';
+      cardOldPrice.textContent = formatVND(oldPriceVal);
+    }
+  } else {
+    if (cardDiscount) cardDiscount.style.display = 'none';
+    if (cardOldPrice) cardOldPrice.style.display = 'none';
+  }
+}
+
+function handleProductUploadSubmit(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('upload-title')?.value.trim();
+  const category = document.getElementById('upload-category')?.value || 'electronics';
+  const sellerId = document.getElementById('upload-seller')?.value || 'nova-seller-c2c';
+  const sellerSelect = document.getElementById('upload-seller');
+  const sellerName = sellerSelect && sellerSelect.selectedIndex >= 0
+    ? sellerSelect.options[sellerSelect.selectedIndex].text.replace(/^[^\w\s\u00C0-\u1EF9]+/, '').trim()
+    : 'Gian Hàng Cá Nhân';
+
+  const condition = document.getElementById('upload-condition')?.value || 'Mới 100% nguyên hộp chính hãng';
+  const price = parseFloat(document.getElementById('upload-price')?.value);
+  const oldPrice = parseFloat(document.getElementById('upload-old-price')?.value) || Math.round(price * 1.25);
+  const stock = parseInt(document.getElementById('upload-stock')?.value) || 10;
+  const isMall = document.getElementById('upload-is-mall')?.checked || false;
+  const isFreeship = document.getElementById('upload-is-freeship')?.checked || false;
+  const desc = document.getElementById('upload-desc')?.value.trim();
+  const brand = document.getElementById('upload-brand')?.value.trim() || 'Nova Official';
+  const warranty = document.getElementById('upload-warranty')?.value.trim() || '12 tháng chính hãng';
+
+  if (!title) {
+    showToast('⚠️ Vui lòng nhập tên sản phẩm');
+    document.getElementById('upload-title')?.focus();
+    return;
+  }
+  if (isNaN(price) || price < 1000) {
+    showToast('⚠️ Vui lòng nhập giá bán hợp lệ (tối thiểu 1.000₫)');
+    document.getElementById('upload-price')?.focus();
+    return;
+  }
+
+  let discountStr = '-0%';
+  if (oldPrice > price) {
+    const pct = Math.round((1 - price / oldPrice) * 100);
+    discountStr = `-${pct}%`;
+  }
+
+  const newId = Date.now();
+  const newProduct = {
+    id: newId,
+    title: title,
+    price: price,
+    oldPrice: oldPrice > price ? oldPrice : Math.round(price * 1.2),
+    discount: discountStr,
+    rating: 5.0,
+    sold: '0',
+    isMall: isMall,
+    freeship: isFreeship,
+    image: currentUploadedImageData || './assets/images/product-headphones.jpg',
+    category: category,
+    partnerId: sellerId,
+    partnerName: sellerName,
+    description: desc || `${title}. Sản phẩm phân phối chính hãng bởi ${sellerName}. Tình trạng: ${condition}. Đóng gói kỹ lưỡng, kiểm tra hàng trước khi nhận, hỗ trợ đổi trả theo tiêu chuẩn sàn Nova Market.`,
+    specs: [
+      { label: 'Tên sản phẩm', value: title },
+      { label: 'Thương hiệu', value: brand },
+      { label: 'Tình trạng', value: condition },
+      { label: 'Bảo hành', value: warranty },
+      { label: 'Kho hàng', value: `${stock} sản phẩm có sẵn` },
+      { label: 'Người bán', value: sellerName }
+    ],
+    isUserUploaded: true,
+    uploadedAt: new Date().toISOString()
+  };
+
+  // Add to product collections
+  PRODUCTS_DATA.unshift(newProduct);
+  myUploadedProducts.unshift(newProduct);
+  saveCustomProducts();
+
+  // Reset form
+  const form = document.getElementById('product-upload-form');
+  if (form) form.reset();
+
+  closeProductUploadModal();
+
+  // Switch to 'all' filter and re-render
+  currentFilter = 'all';
+  currentPartnerFilter = null;
+  document.querySelectorAll('.filter-chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.filter === 'all');
+  });
+
+  filterProducts();
+
+  // Scroll to grid & highlight new product card
+  const grid = document.getElementById('product-grid');
+  if (grid) {
+    grid.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  setTimeout(() => {
+    const cardEl = document.getElementById(`product-${newId}`);
+    if (cardEl) {
+      cardEl.classList.add('product-card--newly-added');
+      cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      cardEl.focus();
+    }
+  }, 400);
+
+  showToast(`🎉 Chúc mừng! Đã đăng tải sản phẩm "${title}" thành công lên sàn Nova Market!`);
+}
+
+function openMyProductsModal() {
+  const modal = document.getElementById('my-products-modal');
+  const overlay = document.getElementById('my-products-overlay');
+  const container = document.getElementById('my-products-container');
+  if (!modal || !overlay || !container) return;
+
+  renderMyProductsList();
+
+  modal.classList.add('active');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeMyProductsModal() {
+  const modal = document.getElementById('my-products-modal');
+  const overlay = document.getElementById('my-products-overlay');
+  if (modal) modal.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function renderMyProductsList() {
+  const container = document.getElementById('my-products-container');
+  if (!container) return;
+
+  updateMyProductsCountBadges();
+
+  if (myUploadedProducts.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 48px 16px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+        <div style="font-size: 44px; margin-bottom: 10px;">📦</div>
+        <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Bạn chưa đăng tải sản phẩm nào</h4>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 18px;">Hãy đưa sản phẩm của bạn lên Nova Market để tiếp cận hàng ngàn khách mua mỗi ngày.</p>
+        <button type="button" class="btn btn--primary" style="padding: 9px 20px; font-size: 13px;" onclick="closeMyProductsModal(); openProductUploadModal();">
+          🚀 Đăng Bán Sản Phẩm Ngay
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = myUploadedProducts.map(p => {
+    const uploadDate = p.uploadedAt ? new Date(p.uploadedAt).toLocaleDateString('vi-VN') : 'Vừa xong';
+    const stockVal = p.specs?.find(s => s.label === 'Kho hàng')?.value || '10 có sẵn';
+    return `
+      <div class="my-prod-row" id="my-prod-row-${p.id}">
+        <img src="${p.image}" alt="${p.title}" class="my-prod-thumb" onerror="this.src='./assets/images/product-headphones.jpg'">
+        <div class="my-prod-info">
+          <div class="my-prod-title" title="${p.title}">${p.title}</div>
+          <div class="my-prod-meta">
+            <span class="my-prod-price">${formatVND(p.price)}</span>
+            ${p.oldPrice > p.price ? `<span style="text-decoration: line-through; color: #94a3b8; font-size: 11px;">${formatVND(p.oldPrice)}</span>` : ''}
+            <span>Kho: <strong>${stockVal}</strong></span>
+            <span>Ngày đăng: ${uploadDate}</span>
+          </div>
+        </div>
+        <div class="my-prod-actions">
+          <button type="button" class="btn-my-prod-view" onclick="closeMyProductsModal(); openProductModal(${p.id});">
+            👁️ Xem Chi Tiết
+          </button>
+          <button type="button" class="btn-my-prod-delete" onclick="deleteMyProduct(${p.id})" title="Gỡ sản phẩm này khỏi sàn">
+            🗑️ Xóa Bán
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function deleteMyProduct(productId) {
+  const prod = myUploadedProducts.find(p => p.id === productId);
+  const title = prod ? prod.title : 'sản phẩm';
+
+  if (!confirm(`Bạn có chắc chắn muốn gỡ bỏ sản phẩm "${title}" khỏi sàn Nova Market không?`)) {
+    return;
+  }
+
+  myUploadedProducts = myUploadedProducts.filter(p => p.id !== productId);
+
+  const idx = PRODUCTS_DATA.findIndex(p => p.id === productId);
+  if (idx !== -1) {
+    PRODUCTS_DATA.splice(idx, 1);
+  }
+
+  saveCustomProducts();
+  renderMyProductsList();
+  filterProducts();
+
+  showToast(`🗑️ Đã gỡ bỏ thành công sản phẩm "${title}" khỏi sàn.`);
+}
+
 // 13. Initializer & Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+  loadCustomPartners();
+  loadCustomProducts();
   renderProducts(PRODUCTS_DATA);
+  renderSellerPartners('all');
   updateCartUI();
   setupSearch();
   startCountdown();
@@ -2573,6 +3723,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       currentFilter = chip.dataset.filter;
+      if (currentFilter !== 'partners') {
+        currentPartnerFilter = null;
+      }
       filterProducts();
     });
   });
@@ -2580,9 +3733,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Category navigation & sidebar links
   document.querySelectorAll('[data-category]').forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
       const cat = link.dataset.category;
+      if (cat === 'partners') {
+        e.preventDefault();
+        document.getElementById('seller-partners')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      e.preventDefault();
       currentFilter = cat;
+      currentPartnerFilter = null;
 
       document.querySelectorAll('.filter-chip').forEach(c => {
         c.classList.toggle('active', c.dataset.filter === cat);
@@ -2647,10 +3807,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Top utility links feedback
   document.querySelectorAll('.top-bar__link').forEach(link => {
     link.addEventListener('click', (e) => {
-      if (link.id === 'nav-login-btn' || link.id === 'nav-register-btn' || link.id === 'nav-logout-btn') {
-        return; // Handled by setupAuth
+      if (
+        link.id === 'nav-login-btn' ||
+        link.id === 'nav-register-btn' ||
+        link.id === 'nav-logout-btn' ||
+        link.id === 'top-seller-portal-link' ||
+        link.id === 'top-become-partner-link'
+      ) {
+        return; // Handled specifically
       }
       const text = link.textContent.trim();
+      if (link.getAttribute('href') === '#seller-partners') {
+        e.preventDefault();
+        document.getElementById('seller-partners')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
       if (link.getAttribute('href')?.startsWith('#')) {
         e.preventDefault();
         showToast(`Tính năng "${text}" đang sẵn sàng phục vụ!`);
@@ -2666,6 +3837,11 @@ document.addEventListener('DOMContentLoaded', () => {
       closeProductModal();
       closeCheckoutModal();
       closeOrdersModal();
+      closeSellerRegisterModal();
+      closePartnerStoreModal();
+      closePartnerChat();
+      closeProductUploadModal();
+      closeMyProductsModal();
       document.getElementById('search-suggestions')?.classList.remove('active');
     }
   });
